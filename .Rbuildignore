@@ -1,0 +1,11 @@
+.gitignore
+^.*\.Rproj$
+^\.Rproj\.user$
+^CRAN-RELEASE$
+^raw$
+^\.travis$
+^cran-comments\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
