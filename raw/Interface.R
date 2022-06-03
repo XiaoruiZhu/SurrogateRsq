@@ -30,6 +30,7 @@ wine_white <- read.csv(file = paste(NewFolder, "/raw/winequality-white.csv", sep
 # Manipulate data
 data <- wine_white %>%
   dplyr::mutate(quality = as.ordered(quality))
+y <- "quality"
 
 # Find all covariates
 x_names <- colnames(data)[!(colnames(data) %in% y)]
