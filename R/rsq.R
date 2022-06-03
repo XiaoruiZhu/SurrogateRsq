@@ -1,0 +1,56 @@
+#' R2
+#'
+#' @param model A reduced or working model that needs to be investigated. The reported surrogate R-square is for this reduced model.
+#' @param full_model A full model that needs to be specified for surrogate R-square approach.
+#' @param data A data set contains the categorical responses and all necessary predictors (including all the predictors in the \code{full_model}).
+#' @param which An argument to specify which pseudo R-square to calculate.
+#' @param avg.num The number of replication for the averaging of surrogate R-square.
+#' @param ... Additional optional arguments.
+#'
+#' @return
+#'
+#' @export
+#'
+#' @importFrom DescTools PseudoR2
+#'
+rsq <-
+  function(model,
+           full_model = NULL,
+           data,
+           which = c("Surrogate", "McFadden", "McKelveyZavoina",
+                     "CoxSnell", "Nagelkerke", "Tjur"),
+           avg.num = 30, ...) {
+    which <- match.arg(which)
+
+    if (which == "Surrogate") {
+
+      if (is.null(full_model)) {
+        # Need to revise:
+        # x_names <- colnames(data)[!(colnames(data) %in% y)]
+      }
+
+      surr_rsq(model,
+               full_model,
+               data,
+               avg.num = 30)
+
+    } else if (which == "McFadden") {
+      unname(PseudoR2(model, which = "McFadden"))
+    } else { # "McKelveyZavoina"
+
+      if (inherits(model, what = "polr")) {
+        sse <- sum((model$lp - mean(model$lp)) ^ 2)
+        return(sse / (sse + nobs(model)))
+      } else if (inherits(model, what = "glm")) {
+        sse <- sum((model$linear.predictors - mean(model$linear.predictors)) ^ 2)
+        return(sse / (sse + nobs(model)))
+      } else {
+        stop(
+          "Only objects of class \"polr\" or \"glm\" are currently supported.", call. = FALSE
+        )
+      }
+    }
+  }
+
+
+
