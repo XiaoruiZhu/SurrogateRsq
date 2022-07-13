@@ -2,7 +2,7 @@
 % Please edit documentation in R/rsq.R
 \name{rsq}
 \alias{rsq}
-\title{R2}
+\title{Goodness-of-fit measure R-squared}
 \usage{
 rsq(
   model,
@@ -15,21 +15,22 @@ rsq(
 )
 }
 \arguments{
-\item{model}{A reduced or working model that needs to be investigated. The reported surrogate R-square is for this reduced model.}
+\item{model}{A reduced or working model that needs to be investigated. The reported surrogate
+R-square is for this reduced model.}
 
 \item{full_model}{A full model that needs to be specified for surrogate R-square approach.}
 
-\item{data}{A data set contains the categorical responses and all necessary predictors (including all the predictors in the \code{full_model}).}
+\item{data}{A data set contains the categorical responses and all necessary predictors
+(including all the predictors in the \code{full_model}).}
 
-\item{which}{An argument to specify which pseudo R-square to calculate.}
+\item{which}{An argument to specify which pseudo R-square to calculate. This package supports
+surrogate R-squared, McFadden R-squared, McKelveyZavoina R-squared,
+CoxSnell R-squared, Nagelkerke R-squared, and Tjur R-squared.}
 
 \item{avg.num}{The number of replication for the averaging of surrogate R-square.}
 
 \item{...}{Additional optional arguments.}
 }
-\value{
-
-}
 \description{
-R2
+Goodness-of-fit measure R-squared
 }

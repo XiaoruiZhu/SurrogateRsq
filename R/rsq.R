@@ -1,9 +1,13 @@
-#' R2
+#' Goodness-of-fit measure R-squared
 #'
-#' @param model A reduced or working model that needs to be investigated. The reported surrogate R-square is for this reduced model.
+#' @param model A reduced or working model that needs to be investigated. The reported surrogate
+#'  R-square is for this reduced model.
 #' @param full_model A full model that needs to be specified for surrogate R-square approach.
-#' @param data A data set contains the categorical responses and all necessary predictors (including all the predictors in the \code{full_model}).
-#' @param which An argument to specify which pseudo R-square to calculate.
+#' @param data A data set contains the categorical responses and all necessary predictors
+#' (including all the predictors in the \code{full_model}).
+#' @param which An argument to specify which pseudo R-square to calculate. This package supports
+#' surrogate R-squared, McFadden R-squared, McKelveyZavoina R-squared,
+#' CoxSnell R-squared, Nagelkerke R-squared, and Tjur R-squared.
 #' @param avg.num The number of replication for the averaging of surrogate R-square.
 #' @param ... Additional optional arguments.
 #'
