@@ -23,13 +23,17 @@ R-square is for this reduced model.}
 \item{data}{A data set contains the categorical responses and all necessary predictors
 (including all the predictors in the \code{full_model}).}
 
-\item{which}{An argument to specify which pseudo R-square to calculate. This package supports
+\item{which}{An argument to specify which pseudo R-squared to calculate. This package supports
 surrogate R-squared, McFadden R-squared, McKelveyZavoina R-squared,
 CoxSnell R-squared, Nagelkerke R-squared, and Tjur R-squared.}
 
 \item{avg.num}{The number of replication for the averaging of surrogate R-square.}
 
 \item{...}{Additional optional arguments.}
+}
+\value{
+An object of class \code{"surr_rsq"} when \code{which = "Surrogate"}, or a R-squared value
+when other pseudo R-squared are specified.
 }
 \description{
 Goodness-of-fit measure R-squared

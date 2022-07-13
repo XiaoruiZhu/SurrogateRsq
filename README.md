@@ -1,12 +1,12 @@
-# R2Cate: an R Package for the surrogate R-squared, a goodness-of-fit measure for the models with categorical response 
+# SurrogateRsq: an R Package for the surrogate R-squared, a goodness-of-fit measure for the models with categorical response 
 
 <!-- badges: start -->
 
-[![](https://www.r-pkg.org/badges/version/R2Cate)](https://www.r-pkg.org/badges/version/)
-[![CRAN checks](https://cranchecks.info/badges/summary/R2Cate)](https://cran.r-project.org/web/checks/)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/R2Cate?color=blue)](https://cranlogs.r-pkg.org/badges/grand-total/)
-[![](https://cranlogs.r-pkg.org/badges/last-month/R2Cate?color=green)](https://cranlogs.r-pkg.org/badges/last-month/)
-[![](https://cranlogs.r-pkg.org/badges/last-week/R2Cate?color=yellow)](https://cranlogs.r-pkg.org/badges/last-week/)
+[![](https://www.r-pkg.org/badges/version/SurrogateRsq)](https://www.r-pkg.org/badges/version/)
+[![CRAN checks](https://cranchecks.info/badges/summary/SurrogateRsq)](https://cran.r-project.org/web/checks/)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/SurrogateRsq?color=blue)](https://cranlogs.r-pkg.org/badges/grand-total/)
+[![](https://cranlogs.r-pkg.org/badges/last-month/SurrogateRsq?color=green)](https://cranlogs.r-pkg.org/badges/last-month/)
+[![](https://cranlogs.r-pkg.org/badges/last-week/SurrogateRsq?color=yellow)](https://cranlogs.r-pkg.org/badges/last-week/)
 
 <!-- badges: end -->
 
@@ -17,21 +17,21 @@ An implementation of the
 
 ## Installation
 
-The `R2Cate` package is currently available on [R2Cate CRAN](https://CRAN.R-project.org/package=).
+The `SurrogateRsq` package will be available on [SurrogateRsq CRAN](https://CRAN.R-project.org/package=) soon.
 
-### Install `R2Cate` development version from GitHub (recommended)
+### Install `SurrogateRsq` development version from GitHub (recommended)
 
 ``` r
 # Install the development version from GitHub
 if (!requireNamespace("devtools")) install.packages("devtools")
-devtools::install_github("XiaoruiZhu/R2Cate")
+devtools::install_github("XiaoruiZhu/SurrogateRsq")
 ```
 
-### Install `R2Cate` from the CRAN
+### Install `SurrogateRsq` from the CRAN
 
 ``` r
 # Install from CRAN
-install.packages("R2Cate")
+install.packages("SurrogateRsq")
 ```
 
 

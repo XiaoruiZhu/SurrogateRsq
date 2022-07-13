@@ -9,10 +9,11 @@
 #' @importFrom PAsso surrogate
 #' @importFrom MASS polr
 #' @importFrom scales percent
-#' @return
+#'
+#' @return An list that contains the contribution of Surrogate R-squared for each variable.
+#'
 #' @export
 #'
-#' @examples
 #'
 surr_rsq_rank <-
   function(object,

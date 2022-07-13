@@ -5,13 +5,14 @@
 #' @param full_model A full model that needs to be specified for surrogate R-square approach.
 #' @param data A data set contains the categorical responses and all necessary predictors
 #' (including all the predictors in the \code{full_model}).
-#' @param which An argument to specify which pseudo R-square to calculate. This package supports
+#' @param which An argument to specify which pseudo R-squared to calculate. This package supports
 #' surrogate R-squared, McFadden R-squared, McKelveyZavoina R-squared,
 #' CoxSnell R-squared, Nagelkerke R-squared, and Tjur R-squared.
 #' @param avg.num The number of replication for the averaging of surrogate R-square.
 #' @param ... Additional optional arguments.
 #'
-#' @return
+#' @return An object of class \code{"surr_rsq"} when \code{which = "Surrogate"}, or a R-squared value
+#' when other pseudo R-squared are specified.
 #'
 #' @export
 #'

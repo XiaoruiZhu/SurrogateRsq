@@ -1,4 +1,4 @@
-Package: SurrRsq
+Package: SurrogateRsq
 Type: Package
 Title: Evaluating goodness of fit for the binary and ordinal data analysis using surrogate $R^2$
 Version: 0.1.0
