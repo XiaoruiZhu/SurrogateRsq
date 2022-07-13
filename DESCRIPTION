@@ -1,17 +1,30 @@
 Package: SurrRsq
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Evaluating goodness of fit for the binary and ordinal data analysis using surrogate $R^2$
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: 
+  c(person(given = "Xiaorui (Jeremy)", family = "Zhu",
+           role = c("aut", "cre"),
+           email = "zhuxiaorui1989@gmail.com"),
+    person(given = "Dungang", family = "Liu",
+           role = c("ctb", "aut"),
+           email = "dungang.liu@uc.edu"),
+    person(given = "Zewei ", family = "Lin", 
+           role = c("ctb"), 
+           email = "linzw@mail.uc.edu"))
+Maintainer: Xiaorui (Jeremy) Zhu <zhuxiaorui1989@gmail.com>
+Description: This package implements the tools for the goodness-of-fit analysis for the probit
+              model (Dungang Liu, Xiaorui Zhu, Brandon Greenwell, and Zewei Lin (2022)). This
+              package can generate a point or interval measure of the surrogate $R^2$. It can
+              also provide a ranking measure of each variable's contribution in terms of surrogate
+              goodness-of-fit measure. This ranking assessment allows one to check the importance 
+              of each variable in terms of their explained variance.
+License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
 Imports: Rcpp (>= 1.0.7)
 LinkingTo: Rcpp
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
