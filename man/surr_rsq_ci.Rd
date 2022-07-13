@@ -16,13 +16,6 @@ It contains the following components: \code{surr_rsq}, \code{reduced_model}, \co
 
 \item{...}{Additional optional arguments.}
 }
-\value{
-
-}
 \description{
 surr_rsq_ci
-}
-\examples{
-
-
 }

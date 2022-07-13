@@ -29,3 +29,7 @@ have passed initial variable screening and model diagnostics (see Paper for refe
 \description{
 surr_rsq
 }
+\references{
+Zhu, X., Liu, D., Lin, Z. (2022). SurrRsq: an R package for evaluating goodness of fit using
+surrogate R-squared
+}

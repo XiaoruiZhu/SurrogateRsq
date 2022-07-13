@@ -16,12 +16,6 @@ It contains the following components: \code{surr_rsq}, \code{reduced_model}, \co
 
 \item{avg}{the number of replication for the averaging of surrogate R-square.}
 }
-\value{
-
-}
 \description{
 surr_rsq_rank
-}
-\examples{
-
 }
