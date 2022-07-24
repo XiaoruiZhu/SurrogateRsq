@@ -2,7 +2,7 @@
 % Please edit documentation in R/surr_rsq.R
 \name{surr_rsq}
 \alias{surr_rsq}
-\title{surr_rsq}
+\title{A function to calculate the surrogate R-squared measure.}
 \usage{
 surr_rsq(model, full_model, data, avg.num = 30, ...)
 }
@@ -13,9 +13,9 @@ surr_rsq(model, full_model, data, avg.num = 30, ...)
 
 \item{data}{A data set contains the categorical responses, predictors.}
 
-\item{...}{Additional optional arguments.}
+\item{avg.num}{The number of replication for the averaging of surrogate R-square.}
 
-\item{avg}{The number of replication for the averaging of surrogate R-square.}
+\item{...}{Additional optional arguments.}
 }
 \value{
 An object of class \code{"surr_rsq"} is a list containing the following components:
@@ -27,7 +27,7 @@ have passed initial variable screening and model diagnostics (see Paper for refe
 \item{\code{data}}{the dataset contains the response variable and all the predictors.}
 }
 \description{
-surr_rsq
+A function to calculate the surrogate R-squared measure.
 }
 \references{
 Zhu, X., Liu, D., Lin, Z. (2022). SurrRsq: an R package for evaluating goodness of fit using

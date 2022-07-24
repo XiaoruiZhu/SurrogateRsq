@@ -34,10 +34,10 @@ rsq <-
         # x_names <- colnames(data)[!(colnames(data) %in% y)]
       }
 
-      surr_rsq(model,
-               full_model,
-               data,
-               avg.num = 30)
+      surr_rsq(model = model,
+               full_model = full_model,
+               data = data,
+               avg.num = avg.num)
 
     } else if (which == "McFadden") {
       unname(PseudoR2(model, which = "McFadden"))

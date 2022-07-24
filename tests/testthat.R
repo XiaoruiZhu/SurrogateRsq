@@ -1,4 +1,4 @@
 library(testthat)
-library(R2Cate)
+library(SurrogateRsq)
 
-test_check("R2Cate")
+test_check("SurrogateRsq")

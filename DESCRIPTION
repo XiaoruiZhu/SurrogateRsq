@@ -24,7 +24,14 @@ Encoding: UTF-8
 LazyData: true
 Imports: Rcpp (>= 1.0.7)
 LinkingTo: Rcpp
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
+Depends:
+  R (>= 3.5.0),
+  DescTools (>= 0.99.42),
+  MASS (>= 7.3-55), 
+  PAsso (>= 0.1.10), 
+  progress (>= 1.2.0),
+  scales (>= 1.1.1)
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

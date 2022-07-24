@@ -1,9 +1,9 @@
-#' surr_rsq
+#' A function to calculate the surrogate R-squared measure.
 #'
 #' @param model A reduced model that needs to be investigated. The reported surrogate R-square is for this reduced model.
 #' @param full_model A full model that contains all of the predictors in the data set.
 #' @param data A data set contains the categorical responses, predictors.
-#' @param avg The number of replication for the averaging of surrogate R-square.
+#' @param avg.num The number of replication for the averaging of surrogate R-square.
 #' @param ... Additional optional arguments.
 #'
 #' @return An object of class \code{"surr_rsq"} is a list containing the following components:
@@ -19,6 +19,8 @@
 #' surrogate R-squared
 #'
 #' @importFrom PAsso surrogate
+#' @importFrom stats update lm nobs quantile
+#'
 #'
 #' @export
 #'
@@ -27,8 +29,11 @@ surr_rsq <-
            full_model,
            data,
            avg.num = 30, ...){
-    full_model_formula <- eval(full_model$call[[2]])
-    model_formula <- eval(model$call[[2]])
+    # full_model_formula <- eval(full_model$call[[2]])
+    # model_formula <- eval(model$call[[2]])
+    full_model_formula <- formula(full_model$terms)
+    model_formula <- formula(model$terms)
+
     #get the formula of reduced model and full model
     if(all(names(model$coefficients) %in% names(full_model$coefficients))){
       #make sure the set of predictors in reduced model is the subset of the predictors in full model
@@ -50,10 +55,13 @@ surr_rsq <-
           res_s_temp[i] <- c(summary(fit_s)$r.squared)
         }
         res_s <- mean(res_s_temp)
-        return_list<-list("surr_rsq"      = res_s,
-                          "reduced_model" = model,
-                          "full_model"    = full_model,
-                          "data"          = data)
+        return_list <-list("surr_rsq"      = res_s,
+                           "reduced_model" = model,
+                           "full_model"    = full_model,
+                           "data"          = data)
+
+        class(return_list) <- c("surr_rsq", class(return_list))
+
         #print.object(s3 class)
         #add class for the return list
         #reduced model, data=NULL
@@ -70,3 +78,38 @@ surr_rsq <-
   }
 
 
+#' @title Print surrogate R-squared measure
+#' @param x A surr_rsq object for printing out results.
+#'
+#' @param digits A default number to specify decimal digit values.
+#' @param ... Additional optional arguments.
+#'
+#' @name print
+#' @method print surr_rsq
+#'
+#' @return Print surrogate R-squared measure of a surr_rsq object
+#'
+#' @importFrom stats formula
+#'
+#' @export
+#' @examples
+#' # See surr_rsq for the example.
+#'
+print.surr_rsq <- function(x, digits = max(2, getOption("digits")-2), ...) {
+  cat("------------------------------------ \n")
+  cat("The surrogate R-squared of the model \n------------------------------------ \n",
+      paste(format(formula(x$reduced_model$terms)), "\n"),
+      "------------------------------------ \nis: \n", sep = "")
+  # x$corr[lower.tri(x$corr)] <- NA
+
+  # print.default(format(x$corr, digits = max(2, (digits))),
+  # print.gap = 2, na.print = "",
+  # quote = FALSE, ...)
+
+  temp <- format(round(x$surr_rsq, digits=max(2, (digits))),
+                 digits = max(2, (digits)), ...)
+
+  print.default(temp,
+                print.gap = 2, na.print = "",
+                quote = FALSE, ...)
+}

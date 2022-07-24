@@ -10,6 +10,7 @@
 #' @return An list that contains the CI_lower, CI_upper, CI_lower_avg, and CI_upper_avg.
 #'
 #' @importFrom progress progress_bar
+#' @importFrom stats update lm nobs quantile
 #'
 #' @export
 #'

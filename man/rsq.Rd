@@ -8,8 +8,7 @@ rsq(
   model,
   full_model = NULL,
   data,
-  which = c("Surrogate", "McFadden", "McKelveyZavoina", "CoxSnell", "Nagelkerke",
-    "Tjur"),
+  which = c("Surrogate", "McFadden", "McKelveyZavoina", "CoxSnell", "Nagelkerke", "Tjur"),
   avg.num = 30,
   ...
 )
