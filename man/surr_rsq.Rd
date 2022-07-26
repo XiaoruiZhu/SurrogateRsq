@@ -29,6 +29,20 @@ have passed initial variable screening and model diagnostics (see Paper for refe
 \description{
 A function to calculate the surrogate R-squared measure.
 }
+\examples{
+data("RedWine")
+
+full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity + citric.acid
++ residual.sugar + chlorides + free.sulfur.dioxide +
+total.sulfur.dioxide + density + pH + sulphates + alcohol)
+
+fullmodel <- polr(formula = full_formula,data=RedWine, method  = "probit")
+
+select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity - citric.acid - residual.sugar - density")
+
+surr_rsq(select_model, fullmodel, data=RedWine, avg.num=500)
+
+}
 \references{
 Zhu, X., Liu, D., Lin, Z. (2022). SurrRsq: an R package for evaluating goodness of fit using
 surrogate R-squared

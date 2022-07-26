@@ -37,3 +37,15 @@ when other pseudo R-squared are specified.
 \description{
 Goodness-of-fit measure R-squared
 }
+\examples{
+data("RedWine")
+
+full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity + citric.acid
++ residual.sugar + chlorides + free.sulfur.dioxide +
+total.sulfur.dioxide + density + pH + sulphates + alcohol)
+
+model <- polr(formula = full_formula, data=RedWine, method  = "probit")
+
+rsq(model=model, data=RedWine, which="McKelveyZavoina")
+
+}
