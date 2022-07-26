@@ -13,6 +13,16 @@
 #' @importFrom stats update lm nobs quantile
 #' @importFrom scales percent
 #'
+#' @examples
+#' data("RedWine")
+#' full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity + citric.acid
+#' + residual.sugar + chlorides + free.sulfur.dioxide +
+#' total.sulfur.dioxide + density + pH + sulphates + alcohol)
+#' fullmodel <- polr(formula = full_formula,data=RedWine, method  = "probit")
+#' select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity - citric.acid - residual.sugar - density")
+#' surr_rsq_select <- surr_rsq(select_model, fullmodel, data=RedWine, avg.num=500)
+#' surr_rsq_ci(surr_rsq_select, alpha = 0.05, B= 1000)
+#'
 #' @export
 #'
 surr_rsq_ci <-
@@ -59,38 +69,15 @@ surr_rsq_ci <-
       pb $tick(tokens = list(letter = progress_repNo[j]))
     }
 
-    # CI_lower <- apply(X = resultTable[,,,-1], MARGIN = c(1,2,3), FUN = quan_025)
-    # CI_lower <- round(CI_lower[1:5,,1], 3)
     CI_lower <- quantile(x = resultTable[-1], probs = c(alpha/2))
     CI_lower <- round(CI_lower, 3)
-
-    # CI_upper <- apply(X = resultTable[,,,-1], MARGIN = c(1,2,3), FUN = quan_975)
-    # CI_upper <- round(CI_upper[1:5,,1], 3)
 
     CI_upper <- quantile(x = resultTable[-1], probs = c(1 - alpha/2))
     CI_upper <- round(CI_upper, 3)
 
-    # CI_lower_avg <- apply(X = resultTable, MARGIN = c(1,2), FUN = mean)
-    # CI_lower_avg <- round(CI_lower_avg[1:5,], 3)
-
-    # CI_upper_avg <- apply(X = resultTable, MARGIN = c(1,2), FUN = mean)
-    # CI_upper_avg <- round(CI_upper_avg[1:5,], 3)
-
-    # return_list <- list("CI_lower"     = CI_lower,
-    #                     "CI_upper"     = CI_upper
-    #                     # ,
-    #                     # "CI_lower_avg" = CI_lower_avg,
-    #                     # "CI_upper_avg" = CI_upper_avg
-    #                     )
-
-
     return_list <- data.frame(Lower = c(percent(alpha/2, 0.01), CI_lower),
                               Upper = c(percent(1 - alpha/2, 0.01), CI_upper),
-                              row.names = c("Percentile", "Confidence Interval")
-                        # ,
-                        # "CI_lower_avg" = CI_lower_avg,
-                        # "CI_upper_avg" = CI_upper_avg
-    )
+                              row.names = c("Percentile", "Confidence Interval"))
 
 
     return(return_list)
