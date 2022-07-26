@@ -17,7 +17,7 @@ It contains the following components: \code{surr_rsq}, \code{reduced_model}, \co
 \item{...}{Additional optional arguments.}
 }
 \value{
-An list that contains the CI_lower, CI_upper, CI_lower_avg, and CI_upper_avg.
+An list that contains the CI_lower, CI_upper.
 }
 \description{
 A function to calculate the interval estimate of the surrogate R-squared measure.

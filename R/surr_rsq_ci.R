@@ -7,10 +7,11 @@
 #' @param B The number of bootstrap replications.
 #' @param ... Additional optional arguments.
 #'
-#' @return An list that contains the CI_lower, CI_upper, CI_lower_avg, and CI_upper_avg.
+#' @return An list that contains the CI_lower, CI_upper.
 #'
 #' @importFrom progress progress_bar
 #' @importFrom stats update lm nobs quantile
+#' @importFrom scales percent
 #'
 #' @export
 #'
@@ -37,49 +38,60 @@ surr_rsq_ci <-
     data <- surr_rsq[[4]]
 
     n <- nrow(data)
-    resultTable <- array(NA, dim = c(dim(data),1,B))
-    resultTable[,,1,1] <- res_s
+    # resultTable <- array(NA, dim = c(dim(data),1,B))
+    # resultTable[,,1,1] <- res_s
+    resultTable <- rep(NA, B)
+    resultTable[1] <- res_s[[1]]
 
     for (j in 2:B) {
       BS_data <- data[sample(1:n, n, replace = T), ]
       try(
-        resultTable[,,1,j] <- surr_rsq(reduced_model, full_model,data)[[1]]
+        resultTable[j] <- surr_rsq(reduced_model, full_model,data)[[1]]
       )
-      while( is.na(resultTable[1,1,1,j])) {
+      while( is.na(resultTable[j])) {
         BS_data <- data[sample(1:n, n, replace = T), ]
         try(
-          resultTable[,,1,j] <- surr_rsq(reduced_model, full_model, data)[[1]]
+          resultTable[j] <- surr_rsq(reduced_model, full_model, data)[[1]]
         )
       }
 
       # ProgressBar
-      pb$tick(tokens = list(letter = progress_repNo[j]))
+      pb $tick(tokens = list(letter = progress_repNo[j]))
     }
 
-    quan_025 <- function(vec) {
-      quantile(vec, probs = c(alpha/2))
-    }
+    # CI_lower <- apply(X = resultTable[,,,-1], MARGIN = c(1,2,3), FUN = quan_025)
+    # CI_lower <- round(CI_lower[1:5,,1], 3)
+    CI_lower <- quantile(x = resultTable[-1], probs = c(alpha/2))
+    CI_lower <- round(CI_lower, 3)
 
-    quan_975 <- function(vec) {
-      quantile(vec, probs = c(1 - alpha/2))
-    }
+    # CI_upper <- apply(X = resultTable[,,,-1], MARGIN = c(1,2,3), FUN = quan_975)
+    # CI_upper <- round(CI_upper[1:5,,1], 3)
 
-    CI_lower <- apply(X = resultTable[,,,-1], MARGIN = c(1,2,3), FUN = quan_025)
-    CI_lower <- round(CI_lower[1:5,,1], 3)
+    CI_upper <- quantile(x = resultTable[-1], probs = c(1 - alpha/2))
+    CI_upper <- round(CI_upper, 3)
 
-    CI_upper <- apply(X = resultTable[,,,-1], MARGIN = c(1,2,3), FUN = quan_975)
-    CI_upper <- round(CI_upper[1:5,,1], 3)
+    # CI_lower_avg <- apply(X = resultTable, MARGIN = c(1,2), FUN = mean)
+    # CI_lower_avg <- round(CI_lower_avg[1:5,], 3)
 
-    CI_lower_avg <- apply(X = resultTable, MARGIN = c(1,2), FUN = mean)
-    CI_lower_avg <- round(CI_lower_avg[1:5,], 3)
+    # CI_upper_avg <- apply(X = resultTable, MARGIN = c(1,2), FUN = mean)
+    # CI_upper_avg <- round(CI_upper_avg[1:5,], 3)
 
-    CI_upper_avg <- apply(X = resultTable, MARGIN = c(1,2), FUN = mean)
-    CI_upper_avg <- round(CI_upper_avg[1:5,], 3)
+    # return_list <- list("CI_lower"     = CI_lower,
+    #                     "CI_upper"     = CI_upper
+    #                     # ,
+    #                     # "CI_lower_avg" = CI_lower_avg,
+    #                     # "CI_upper_avg" = CI_upper_avg
+    #                     )
 
-    return_list <- list("CI_lower"     = CI_lower,
-                        "CI_upper"     = CI_upper,
-                        "CI_lower_avg" = CI_lower_avg,
-                        "CI_upper_avg" = CI_upper_avg)
+
+    return_list <- data.frame(Lower = c(percent(alpha/2, 0.01), CI_lower),
+                              Upper = c(percent(1 - alpha/2, 0.01), CI_upper),
+                              row.names = c("Percentile", "Confidence Interval")
+                        # ,
+                        # "CI_lower_avg" = CI_lower_avg,
+                        # "CI_upper_avg" = CI_upper_avg
+    )
+
 
     return(return_list)
   }
