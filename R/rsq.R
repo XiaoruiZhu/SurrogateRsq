@@ -13,6 +13,13 @@
 #'
 #' @return An object of class \code{"surr_rsq"} when \code{which = "Surrogate"}, or a R-squared value
 #' when other pseudo R-squared are specified.
+#' @examples
+#' data("RedWine")
+#' full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity + citric.acid
+#' + residual.sugar + chlorides + free.sulfur.dioxide +
+#' total.sulfur.dioxide + density + pH + sulphates + alcohol)
+#' model <- polr(formula = full_formula,data=RedWine, method  = "probit")
+#' rsq(model=model,data=RedWine,which="McKelveyZavoina")
 #'
 #' @export
 #'

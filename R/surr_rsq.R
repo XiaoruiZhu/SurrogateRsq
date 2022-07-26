@@ -21,7 +21,15 @@
 #' @importFrom PAsso surrogate
 #' @importFrom stats update lm nobs quantile
 #'
-#'
+#' @examples
+#' data("RedWine")
+#' full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity + citric.acid
+#' + residual.sugar + chlorides + free.sulfur.dioxide +
+#' total.sulfur.dioxide + density + pH + sulphates + alcohol)
+#' fullmodel <- polr(formula = full_formula,data=RedWine, method  = "probit")
+#' select_model <-update(fullmodel, formula. = ". ~ . - fixed.acidity - citric.acid
+#' - residual.sugar - density")
+#' surr_rsq(select_model, fullmodel, data=RedWine, avg.num=500)
 #' @export
 #'
 surr_rsq <-
