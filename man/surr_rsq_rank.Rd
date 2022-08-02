@@ -45,7 +45,8 @@ c("sulphates", "I(sulphates^2)", "I(sulphates^3)"))
 
 
 fullmodel <- polr(formula = full_formula,data=RedWine, method  = "probit")
-select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity - citric.acid - residual.sugar - density")
+select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity
+- citric.acid - residual.sugar - density")
 
 Rank_table <- surr_rsq_rank(object  = select_model,
 data    = RedWine,

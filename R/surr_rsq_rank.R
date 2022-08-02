@@ -33,7 +33,8 @@
 #'
 #'
 #' fullmodel <- polr(formula = full_formula,data=RedWine, method  = "probit")
-#' select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity - citric.acid - residual.sugar - density")
+#' select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity
+#' - citric.acid - residual.sugar - density")
 #'
 #' Rank_table <- surr_rsq_rank(object  = select_model,
 #' data    = RedWine,
@@ -101,4 +102,6 @@ surr_rsq_rank <-
     # save(result_table, file = "test")
     return(result_table)
   }
+
+
 
