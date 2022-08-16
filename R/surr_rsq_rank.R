@@ -19,8 +19,8 @@
 #' data("RedWine")
 #'
 #' full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity + citric.acid
-#' + residual.sugar + chlorides + free.sulfur.dioxide +
-#' total.sulfur.dioxide + density + pH + sulphates + alcohol)
+#' + residual.sugar + chlorides + free.sulfur.dioxide +total.sulfur.dioxide +
+#' density + pH + sulphates + alcohol)
 #'
 #' test_var_set <- list(c("volatile.acidity"),
 #' c("chlorides"),
@@ -34,8 +34,8 @@
 #'
 #'
 #' fullmodel <- polr(formula = full_formula,data=RedWine, method  = "probit")
-#' select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity
-#' - citric.acid - residual.sugar - density")
+#' select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity -
+#' citric.acid - residual.sugar - density")
 #'
 #' Rank_table <- surr_rsq_rank(object  = select_model,
 #' data    = RedWine,

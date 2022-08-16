@@ -31,8 +31,8 @@ total.sulfur.dioxide + density + pH + sulphates + alcohol)
 
 fullmodel <- polr(formula = full_formula,data=RedWine, method  = "probit")
 
-select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity
-- citric.acid - residual.sugar - density")
+select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity -
+citric.acid - residual.sugar - density")
 
 surr_rsq_select <- surr_rsq(select_model, fullmodel, data=RedWine, avg.num=500)
 
