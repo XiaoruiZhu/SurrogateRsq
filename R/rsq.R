@@ -1,5 +1,6 @@
-#' Goodness-of-fit measure R-squared
+#' A function to calculate most of the available pseudo R-squared measures
 #'
+#' @description A function to include most of the available pseudo R-squared measures including Surrogate R-squared, McFadden R-squared, McKelveyZavoina R-squared, CoxSnell R-squared, Nagelkerke R-squared, and Tjur R-squared.
 #' @param model A reduced or working model that needs to be investigated. The reported surrogate
 #'  R-square is for this reduced model.
 #' @param full_model A full model that needs to be specified for surrogate R-square approach.

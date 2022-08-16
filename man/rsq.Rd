@@ -2,7 +2,7 @@
 % Please edit documentation in R/rsq.R
 \name{rsq}
 \alias{rsq}
-\title{Goodness-of-fit measure R-squared}
+\title{A function to calculate most of the available pseudo R-squared measures}
 \usage{
 rsq(
   model,
@@ -35,7 +35,7 @@ An object of class \code{"surr_rsq"} when \code{which = "Surrogate"}, or a R-squ
 when other pseudo R-squared are specified.
 }
 \description{
-Goodness-of-fit measure R-squared
+A function to include most of the available pseudo R-squared measures including Surrogate R-squared, McFadden R-squared, McKelveyZavoina R-squared, CoxSnell R-squared, Nagelkerke R-squared, and Tjur R-squared.
 }
 \examples{
 data("RedWine")

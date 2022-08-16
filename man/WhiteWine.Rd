@@ -3,7 +3,7 @@
 \docType{data}
 \name{WhiteWine}
 \alias{WhiteWine}
-\title{White wine}
+\title{White wine quality dataset of the Portuguese "Vinho Verde" wine}
 \format{
 A data frame with 4898 rows, quality score, and 11 variables of physicochemical properties of wines.
 \itemize{

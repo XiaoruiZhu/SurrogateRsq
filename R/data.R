@@ -1,4 +1,4 @@
-#' Red wine
+#' Red wine quality dataset of the Portuguese "Vinho Verde" wine
 #'
 #' A red wine tasting preference data used in the study of Cortez, Cerdeira, Almeida, Matos,
 #' and Reis 2009. This red wine contains 1599 samples and 12 variables including the tasting
@@ -40,7 +40,7 @@
 #' head(RedWine)
 NULL
 
-#' White wine
+#' White wine quality dataset of the Portuguese "Vinho Verde" wine
 #'
 #' A white wine tasting preference data used in the study of Cortez, Cerdeira, Almeida, Matos,
 #' and Reis 2009. This white wine contains 4898 white vinho verde wine samples and 12

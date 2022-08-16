@@ -2,7 +2,7 @@
 % Please edit documentation in R/surr_rsq_rank.R
 \name{surr_rsq_rank}
 \alias{surr_rsq_rank}
-\title{surr_rsq_rank}
+\title{The contribution of each variable in the final model}
 \usage{
 surr_rsq_rank(object, data, avg.num = 30, var.set = NA, ...)
 }
@@ -24,7 +24,7 @@ a model will fit by removing the specified variables.}
 An list that contains the contribution of Surrogate R-squared for each variable.
 }
 \description{
-surr_rsq_rank
+This function calculates reduction of the surrogate R-squared goodness-of-fit of each variable to measure their relative explanatory power. This function creates a table containing the reductions of surrogate R-squared by removing each one of variables in the model.
 }
 \examples{
 data("RedWine")

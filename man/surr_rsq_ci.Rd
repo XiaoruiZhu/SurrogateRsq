@@ -2,7 +2,7 @@
 % Please edit documentation in R/surr_rsq_ci.R
 \name{surr_rsq_ci}
 \alias{surr_rsq_ci}
-\title{A function to calculate the interval estimate of the surrogate R-squared measure.}
+\title{A function to calculate the interval estimate of the surrogate R-squared measure}
 \usage{
 surr_rsq_ci(surr_rsq, alpha = 0.05, B = 1000, ...)
 }
@@ -20,7 +20,7 @@ It contains the following components: \code{surr_rsq}, \code{reduced_model}, \co
 An list that contains the CI_lower, CI_upper.
 }
 \description{
-A function to calculate the interval estimate of the surrogate R-squared measure.
+This function generates the interval measure of surrogate R-squared by bootstrap.
 }
 \examples{
 data("RedWine")

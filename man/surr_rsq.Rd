@@ -27,20 +27,20 @@ have passed initial variable screening and model diagnostics (see Paper for refe
 \item{\code{data}}{the dataset contains the response variable and all the predictors.}
 }
 \description{
-A function to calculate the surrogate R-squared measure.
+It can provide the surrogate R-squared for a user specified model. This function will generate an S3 object of surrogate R-squared measure that will be called from other functions of this package.
 }
 \examples{
 data("RedWine")
 
-full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity + citric.acid
-+ residual.sugar + chlorides + free.sulfur.dioxide +
+full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity +
+citric.acid+ residual.sugar + chlorides + free.sulfur.dioxide +
 total.sulfur.dioxide + density + pH + sulphates + alcohol)
 
-fullmodel <- polr(formula = full_formula,data=RedWine, method  = "probit")
+fullmodel <- polr(formula = full_formula,
+data=RedWine, method  = "probit")
 
-select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity
-- citric.acid - residual.sugar - density")
-
+select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity -
+citric.acid - residual.sugar - density")
 surr_rsq(select_model, fullmodel, data=RedWine, avg.num=500)
 
 }
