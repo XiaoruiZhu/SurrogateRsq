@@ -34,8 +34,8 @@ fullmodel <- polr(formula = full_formula,data=RedWine, method  = "probit")
 select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity -
 citric.acid - residual.sugar - density")
 
-surr_rsq_select <- surr_rsq(select_model, fullmodel, data=RedWine, avg.num=500)
+surr_rsq_select <- surr_rsq(select_model, fullmodel, data = RedWine, avg.num = 30)
 
-surr_rsq_ci(surr_rsq_select, alpha = 0.05, B= 1000)
+surr_rsq_ci(surr_rsq_select, alpha = 0.05, B = 1000)
 
 }

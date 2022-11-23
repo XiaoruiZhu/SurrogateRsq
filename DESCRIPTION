@@ -1,6 +1,6 @@
 Package: SurrogateRsq
 Type: Package
-Title: Evaluating goodness of fit for the binary and ordinal data analysis using surrogate $R^2$
+Title: Evaluating the goodness of fit using the surrogate $R^2$
 Version: 0.1.0
 Authors@R: 
   c(person(given = "Xiaorui (Jeremy)", family = "Zhu",
@@ -18,7 +18,9 @@ Description: This package implements the tools for the goodness-of-fit analysis 
               package can generate a point or interval measure of the surrogate $R^2$. It can
               also provide a ranking measure of each variable's contribution in terms of surrogate
               goodness-of-fit measure. This ranking assessment allows one to check the importance 
-              of each variable in terms of their explained variance.
+              of each variable in terms of their explained variance. It can be jointly used with other
+              existing R packages for variable selection and model diagnostics in the model-building 
+              process. 
 License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
@@ -33,3 +35,4 @@ Depends:
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+URL: https://xiaoruizhu.github.io/SurrogateRsq/

@@ -3,7 +3,7 @@
 #' @description It can provide the surrogate R-squared for a user specified model. This function will generate an S3 object of surrogate R-squared measure that will be called from other functions of this package.
 #' @param model A reduced model that needs to be investigated. The reported surrogate R-square is for this reduced model.
 #' @param full_model A full model that contains all of the predictors in the data set.
-#' @param data A data set contains the categorical responses, predictors.
+#' @param data A dataset containing the categorical responses, predictors.
 #' @param avg.num The number of replication for the averaging of surrogate R-square.
 #' @param ... Additional optional arguments.
 #'
@@ -16,8 +16,8 @@
 #' \item{\code{data}}{the dataset contains the response variable and all the predictors.}
 #'
 #' @references
-#' Zhu, X., Liu, D., Lin, Z. (2022). SurrRsq: an R package for evaluating goodness of fit using
-#' surrogate R-squared
+#' Zhu, X., Liu, D., Lin, Z. (2022). SurrRsq: an R package for evaluating the goodness of fit using
+#' the surrogate R-squared
 #'
 #' @importFrom PAsso surrogate
 #' @importFrom stats update lm nobs quantile
@@ -35,7 +35,7 @@
 #' select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity -
 #' citric.acid - residual.sugar - density")
 #' surr_rsq(model = select_model, full_model = fullmodel,
-#' data = RedWine, avg.num = 500)
+#' data = RedWine, avg.num = 30)
 #'
 #' @export
 #'
@@ -77,10 +77,6 @@ surr_rsq <-
 
         class(return_list) <- c("surr_rsq", class(return_list))
 
-        #print.object(s3 class)
-        #add class for the return list
-        #reduced model, data=NULL
-        #data?
         return(return_list)
       }
       else{
@@ -115,11 +111,6 @@ print.surr_rsq <- function(x, digits = max(2, getOption("digits")-2), ...) {
   cat("The surrogate R-squared of the model \n------------------------------------ \n",
       paste(format(formula(x$reduced_model$terms)), "\n"),
       "------------------------------------ \nis: \n", sep = "")
-  # x$corr[lower.tri(x$corr)] <- NA
-
-  # print.default(format(x$corr, digits = max(2, (digits))),
-  # print.gap = 2, na.print = "",
-  # quote = FALSE, ...)
 
   temp <- format(round(x$surr_rsq, digits=max(2, (digits))),
                  digits = max(2, (digits)), ...)

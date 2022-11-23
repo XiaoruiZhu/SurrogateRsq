@@ -11,7 +11,7 @@ surr_rsq(model, full_model, data, avg.num = 30, ...)
 
 \item{full_model}{A full model that contains all of the predictors in the data set.}
 
-\item{data}{A data set contains the categorical responses, predictors.}
+\item{data}{A dataset containing the categorical responses, predictors.}
 
 \item{avg.num}{The number of replication for the averaging of surrogate R-square.}
 
@@ -42,10 +42,10 @@ data=RedWine, method  = "probit")
 select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity -
 citric.acid - residual.sugar - density")
 surr_rsq(model = select_model, full_model = fullmodel,
-data = RedWine, avg.num = 500)
+data = RedWine, avg.num = 30)
 
 }
 \references{
-Zhu, X., Liu, D., Lin, Z. (2022). SurrRsq: an R package for evaluating goodness of fit using
-surrogate R-squared
+Zhu, X., Liu, D., Lin, Z. (2022). SurrRsq: an R package for evaluating the goodness of fit using
+the surrogate R-squared
 }

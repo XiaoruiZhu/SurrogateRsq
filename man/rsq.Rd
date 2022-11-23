@@ -17,7 +17,7 @@ rsq(
 \item{model}{A reduced or working model that needs to be investigated. The reported surrogate
 R-square is for this reduced model.}
 
-\item{full_model}{A full model that needs to be specified for surrogate R-square approach.}
+\item{full_model}{A full model that needs to be specified for the surrogate R-square approach.}
 
 \item{data}{A data set contains the categorical responses and all necessary predictors
 (including all the predictors in the \code{full_model}).}
