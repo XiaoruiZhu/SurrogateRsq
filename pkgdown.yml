@@ -2,7 +2,7 @@ pandoc: 2.19.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-11-23T20:21Z
+last_built: 2022-11-23T20:44Z
 urls:
   reference: https://xiaoruizhu.github.io/SurrogateRsq/reference
   article: https://xiaoruizhu.github.io/SurrogateRsq/articles
