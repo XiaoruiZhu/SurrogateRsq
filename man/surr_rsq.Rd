@@ -41,7 +41,8 @@ data=RedWine, method  = "probit")
 
 select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity -
 citric.acid - residual.sugar - density")
-surr_rsq(select_model, fullmodel, data=RedWine, avg.num=500)
+surr_rsq(model = select_model, full_model = fullmodel,
+data = RedWine, avg.num = 500)
 
 }
 \references{
