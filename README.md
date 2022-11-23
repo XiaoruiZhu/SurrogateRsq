@@ -1,4 +1,4 @@
-# SurrogateRsq: an R Package for the surrogate R-squared, a goodness-of-fit measure for the models with categorical response 
+# SurrogateRsq: an R Package for evaluating the goodness of fit using the surrogate R-squared 
 
 <!-- badges: start -->
 
@@ -13,7 +13,7 @@
 Overview
 --------
 
-An implementation of the 
+This package implements the tools for the goodness-of-fit analysis for the probit model (Dungang Liu, Xiaorui Zhu, Brandon Greenwell, and Zewei Lin (2022)). This package can generate a point or interval measure of the surrogate $R^2$. It can also provide a ranking measure of each variable's contribution in terms of surrogate goodness-of-fit measure. This ranking assessment allows one to check the importance of each variable in terms of their explained variance. It can be jointly used with other existing R packages for variable selection and model diagnostics in the model-building process. 
 
 ## Installation
 
@@ -34,7 +34,6 @@ devtools::install_github("XiaoruiZhu/SurrogateRsq")
 install.packages("SurrogateRsq")
 ```
 
-
 ## Example
 
 The following example shows the R code for analyzing white wine-tasting data ( data("WhiteWine") ).The tasting dataset of white wine contains 4898 samples and 11 explanatory variables. The explanatory variables are the physicochemical features of the wine, for example, the acidity, sugar, dioxide, pH, and others. The response variable is the tasting rating score of the wine, which ranges from 0 (very bad) to 10 (excellent).
@@ -52,8 +51,8 @@ full_formula_white <-
                        alcohol)
 
 naive_model_white <- polr(formula = full_formula_white, 
-                    data    = WhiteWine, 
-                    method  = "probit")
+                          data    = WhiteWine, 
+                          method  = "probit")
 
 # selected model
 select_model_white <- 
@@ -61,7 +60,7 @@ select_model_white <-
          formula. = 
            ". ~ . - citric.acid - chlorides - total.sulfur.dioxide - density")
 
-# surrogate R-square
+# surrogate R-squared
 surr_obj_white <- 
   surr_rsq(model      = select_model_white,
            full_model = select_model_white, 
@@ -69,7 +68,7 @@ surr_obj_white <-
            avg.num    = 30)
 surr_obj_white$surr_rsq
 
-# surrogate R-square rank table
+# surrogate R-squared rank table
 test_var_set_white <- 
   list(
     c("alcohol"),
@@ -85,7 +84,7 @@ Rank_table_white <-
   surr_rsq_rank(object  = select_model_white, 
                 data    = WhiteWine,
                 var.set = test_var_set_white, 
-                avg.num = 300)
+                avg.num = 30)
 
 Rank_table_white$Reduction <- 
   percent(surr_obj_white$surr_rsq - Rank_table_white$SurrogateR2, 0.01)
