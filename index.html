@@ -65,7 +65,7 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="surrogatersq-an-r-package-for-the-surrogate-r-squared-a-goodness-of-fit-measure-for-the-models-with-categorical-response">SurrogateRsq: an R Package for the surrogate R-squared, a goodness-of-fit measure for the models with categorical response<a class="anchor" aria-label="anchor" href="#surrogatersq-an-r-package-for-the-surrogate-r-squared-a-goodness-of-fit-measure-for-the-models-with-categorical-response"></a>
+<div class="page-header"><h1 id="surrogatersq-an-r-package-for-evaluating-the-goodness-of-fit-using-the-surrogate-r-squared">SurrogateRsq: an R Package for evaluating the goodness of fit using the surrogate R-squared<a class="anchor" aria-label="anchor" href="#surrogatersq-an-r-package-for-evaluating-the-goodness-of-fit-using-the-surrogate-r-squared"></a>
 </h1></div>
 <!-- badges: start -->
 
@@ -73,7 +73,7 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>An implementation of the</p>
+<p>This package implements the tools for the goodness-of-fit analysis for the probit model (Dungang Liu, Xiaorui Zhu, Brandon Greenwell, and Zewei Lin (2022)). This package can generate a point or interval measure of the surrogate <span class="math inline"><em>R</em><sup>2</sup></span>. It can also provide a ranking measure of each variable’s contribution in terms of surrogate goodness-of-fit measure. This ranking assessment allows one to check the importance of each variable in terms of their explained variance. It can be jointly used with other existing R packages for variable selection and model diagnostics in the model-building process.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -112,8 +112,8 @@
 <span>                       <span class="va">alcohol</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">naive_model_white</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/polr.html" class="external-link">polr</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">full_formula_white</span>, </span>
-<span>                    data    <span class="op">=</span> <span class="va">WhiteWine</span>, </span>
-<span>                    method  <span class="op">=</span> <span class="st">"probit"</span><span class="op">)</span></span>
+<span>                          data    <span class="op">=</span> <span class="va">WhiteWine</span>, </span>
+<span>                          method  <span class="op">=</span> <span class="st">"probit"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># selected model</span></span>
 <span><span class="va">select_model_white</span> <span class="op">&lt;-</span> </span>
@@ -121,7 +121,7 @@
 <span>         formula. <span class="op">=</span> </span>
 <span>           <span class="st">". ~ . - citric.acid - chlorides - total.sulfur.dioxide - density"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># surrogate R-square</span></span>
+<span><span class="co"># surrogate R-squared</span></span>
 <span><span class="va">surr_obj_white</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="reference/surr_rsq.html">surr_rsq</a></span><span class="op">(</span>model      <span class="op">=</span> <span class="va">select_model_white</span>,</span>
 <span>           full_model <span class="op">=</span> <span class="va">select_model_white</span>, </span>
@@ -129,7 +129,7 @@
 <span>           avg.num    <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="va">surr_obj_white</span><span class="op">$</span><span class="va">surr_rsq</span></span>
 <span></span>
-<span><span class="co"># surrogate R-square rank table</span></span>
+<span><span class="co"># surrogate R-squared rank table</span></span>
 <span><span class="va">test_var_set_white</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"alcohol"</span><span class="op">)</span>,</span>
@@ -145,7 +145,7 @@
 <span>  <span class="fu"><a href="reference/surr_rsq_rank.html">surr_rsq_rank</a></span><span class="op">(</span>object  <span class="op">=</span> <span class="va">select_model_white</span>, </span>
 <span>                data    <span class="op">=</span> <span class="va">WhiteWine</span>,</span>
 <span>                var.set <span class="op">=</span> <span class="va">test_var_set_white</span>, </span>
-<span>                avg.num <span class="op">=</span> <span class="fl">300</span><span class="op">)</span></span>
+<span>                avg.num <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">Rank_table_white</span><span class="op">$</span><span class="va">Reduction</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span><span class="op">(</span><span class="va">surr_obj_white</span><span class="op">$</span><span class="va">surr_rsq</span> <span class="op">-</span> <span class="va">Rank_table_white</span><span class="op">$</span><span class="va">SurrogateR2</span>, <span class="fl">0.01</span><span class="op">)</span></span>
@@ -177,7 +177,6 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Xiaorui (Jeremy) Zhu <br><small class="roles"> Author, maintainer </small>  </li>
-<li>Dungang Liu <br><small class="roles"> Contributor, author </small>  </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
@@ -199,7 +198,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Xiaorui (Jeremy) Zhu, Dungang Liu.</p>
+<p>Developed by Xiaorui (Jeremy) Zhu.</p>
 </div>
 
 <div class="pkgdown-footer-right">
