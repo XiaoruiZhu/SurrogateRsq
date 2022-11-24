@@ -1,3 +1,11 @@
+# Changes in version 0.1.1
+
+## Features needed
+
+1. It has "print()" for surr_rsq, but the print() or summary() functions are needed for surr_rsp_ci and surr_rsq_rank.
+
+2. ...
+
 # SurrogateRsq 0.1.0
 
 ## Major features

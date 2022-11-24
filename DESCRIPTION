@@ -13,15 +13,15 @@ Authors@R:
            role = c("ctb"), 
            email = "linzw@mail.uc.edu"))
 Maintainer: Xiaorui (Jeremy) Zhu <zhuxiaorui1989@gmail.com>
-Description: To assess and compare the models' goodness of fit, goodness- of-fit $R^2$ is one 
+Description: To assess and compare the models' goodness of fit, $R^2$ is one 
               of the most popular measures. For categorical data analysis, however, no universally
               adopted $R^2$ measure can resemble the ordinary least square (OLS) $R^2$ for 
               linear models with continuous data. This package implement the surrogate $R^2$
-              measure proposed in the study of Dungang Liu, Xiaorui Zhu, Brandon Greenwell, 
+              measure for categorical data analysis, which is proposed in the study of Dungang Liu, Xiaorui Zhu, Brandon Greenwell, 
               and Zewei Lin (2022). It can generate a point or interval measure of the surrogate
               $R^2$. It can also provide a ranking measure of the percentage contribution of
               each variable to the overall surrogate $R^2$. This ranking assessment allows one to
-              check the importance of each variable in terms of their explained variance. It can
+              check the importance of each variable in terms of their explained variance. This package can
               be jointly used with other existing R packages for variable selection and model 
               diagnostics in the model-building process. 
 License: GPL (>=2)
