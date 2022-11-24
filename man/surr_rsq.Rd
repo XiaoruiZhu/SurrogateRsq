@@ -27,7 +27,10 @@ have passed initial variable screening and model diagnostics (see Paper for refe
 \item{\code{data}}{the dataset contains the response variable and all the predictors.}
 }
 \description{
-It can provide the surrogate R-squared for a user specified model. This function will generate an S3 object of surrogate R-squared measure that will be called from other functions of this package.
+It can provide the surrogate R-squared for a user specified model.
+This function will generate an S3 object of surrogate R-squared measure that will
+be called from other functions of this package. The generic S3 function \code{print}
+is also developed to present the surrogate R-squared measure.
 }
 \examples{
 data("RedWine")

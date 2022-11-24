@@ -1,6 +1,9 @@
 #' A function to calculate the surrogate R-squared measure.
 #'
-#' @description It can provide the surrogate R-squared for a user specified model. This function will generate an S3 object of surrogate R-squared measure that will be called from other functions of this package.
+#' @description It can provide the surrogate R-squared for a user specified model.
+#' This function will generate an S3 object of surrogate R-squared measure that will
+#' be called from other functions of this package. The generic S3 function \code{print}
+#' is also developed to present the surrogate R-squared measure.
 #' @param model A reduced model that needs to be investigated. The reported surrogate R-square is for this reduced model.
 #' @param full_model A full model that contains all of the predictors in the data set.
 #' @param data A dataset containing the categorical responses, predictors.
@@ -103,14 +106,12 @@ surr_rsq <-
 #' @importFrom stats formula
 #'
 #' @export
-#' @examples
-#' # See surr_rsq for the example.
-#'
+#' @keywords internal
 print.surr_rsq <- function(x, digits = max(2, getOption("digits")-2), ...) {
-  cat("------------------------------------ \n")
-  cat("The surrogate R-squared of the model \n------------------------------------ \n",
+  cat("------------------------------------------------------------------------ \n")
+  cat("The surrogate R-squared of the model \n------------------------------------------------------------------------ \n",
       paste(format(formula(x$reduced_model$terms)), "\n"),
-      "------------------------------------ \nis: \n", sep = "")
+      "------------------------------------------------------------------------ \nis: \n", sep = "")
 
   temp <- format(round(x$surr_rsq, digits=max(2, (digits))),
                  digits = max(2, (digits)), ...)

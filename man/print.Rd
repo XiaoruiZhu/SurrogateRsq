@@ -20,7 +20,4 @@ Print surrogate R-squared measure of a surr_rsq object
 \description{
 Print surrogate R-squared measure
 }
-\examples{
-# See surr_rsq for the example.
-
-}
+\keyword{internal}
