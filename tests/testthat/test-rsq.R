@@ -1,7 +1,7 @@
 test_that("test surr_rsq which==Surrogate for vgam", {
 
   # library(SurrogateRsq)
-  library(VGAM)
+  # library(VGAM)
 
   # Read the csv file of the white wine data
   data("WhiteWine")
@@ -14,15 +14,15 @@ test_that("test surr_rsq which==Surrogate for vgam", {
 
   full_formula <- as.formula(paste(y, paste(x_names, collapse = " + "), sep = " ~ "))
 
-  full_mod <- vgam(formula = full_formula,
-                   data = WhiteWine,
-                   family = cumulative(link = "probit"))
+  # full_mod <- vgam(formula = full_formula,
+  #                  data = WhiteWine,
+  #                  family = cumulative(link = "probit"))
 
   allsig_formula <- update(full_formula, ~ . - citric.acid - chlorides - total.sulfur.dioxide)
 
-  allsig_mod <- vgam(formula = allsig_formula,
-                     data = WhiteWine,
-                     family = cumulative(link = "probit"))
+  # allsig_mod <- vgam(formula = allsig_formula,
+  #                    data = WhiteWine,
+  #                    family = cumulative(link = "probit"))
 
   # test1 <- rsq(model = allsig_mod,
   #              data = WhiteWine,
