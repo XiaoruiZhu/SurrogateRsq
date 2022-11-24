@@ -27,7 +27,7 @@
 #'
 #' surr_rsq_select <- surr_rsq(select_model, fullmodel, data = RedWine, avg.num = 30)
 #'
-#' surr_rsq_ci(surr_rsq_select, alpha = 0.05, B = 1000)
+#' # surr_rsq_ci(surr_rsq_select, alpha = 0.05, B = 1000) # Not run, it takes time.
 #'
 #' @export
 #'

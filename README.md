@@ -2,12 +2,12 @@
 
 <!-- badges: start -->
 
-[![](https://www.r-pkg.org/badges/version/SurrogateRsq)](https://www.r-pkg.org/badges/version/)
-[![CRAN checks](https://cranchecks.info/badges/summary/SurrogateRsq)](https://cran.r-project.org/web/checks/)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/SurrogateRsq?color=blue)](https://cranlogs.r-pkg.org/badges/grand-total/)
-[![](https://cranlogs.r-pkg.org/badges/last-month/SurrogateRsq?color=green)](https://cranlogs.r-pkg.org/badges/last-month/)
-[![](https://cranlogs.r-pkg.org/badges/last-week/SurrogateRsq?color=yellow)](https://cranlogs.r-pkg.org/badges/last-week/)
-
+[![](https://img.shields.io/cran/v/SurrogateRsq?logo=R)](https://cran.r-project.org/package=SurrogateRsq)
+[![CRAN checks](https://cranchecks.info/badges/summary/SurrogateRsq)](https://cran.r-project.org/web/checks/check_results_SurrogateRsq.html)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/SurrogateRsq?color=blue)](https://cranlogs.r-pkg.org/badges/grand-total/SurrogateRsq)
+[![](https://cranlogs.r-pkg.org/badges/last-month/SurrogateRsq?color=green)](https://cranlogs.r-pkg.org/badges/last-month/SurrogateRsq?color=green)
+[![](https://cranlogs.r-pkg.org/badges/last-week/SurrogateRsq?color=yellow)](https://cranlogs.r-pkg.org/badges/last-week/SurrogateRsq?color=yellow)
+[![](https://api.travis-ci.com/XiaoruiZhu/SurrogateRsq.svg?branch=master)](https://api.travis-ci.com/XiaoruiZhu/SurrogateRsq.svg)
 <!-- badges: end -->
 
 Overview
@@ -17,7 +17,7 @@ This package implements the tools for the goodness-of-fit analysis for the probi
 
 ## Installation
 
-The `SurrogateRsq` package will be available on [SurrogateRsq CRAN](https://CRAN.R-project.org/package=) soon.
+The `SurrogateRsq` package will be available on [SurrogateRsq CRAN](https://CRAN.R-project.org/package=SurrogateRsq) soon.
 
 ### Install `SurrogateRsq` development version from GitHub (recommended)
 
