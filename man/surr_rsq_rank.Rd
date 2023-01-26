@@ -27,31 +27,23 @@ An list that contains the contribution of Surrogate R-squared for each variable.
 This function calculates reduction of the surrogate R-squared goodness-of-fit of each variable to measure their relative explanatory power. This function creates a table containing the reductions of surrogate R-squared by removing each one of variables in the model.
 }
 \examples{
-data("RedWine")
+data("WhiteWine")
 
-full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity + citric.acid
-+ residual.sugar + chlorides + free.sulfur.dioxide +total.sulfur.dioxide +
-density + pH + sulphates + alcohol)
+sele_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity +
+                          residual.sugar +  + free.sulfur.dioxide +
+                          pH + sulphates + alcohol)
 
-test_var_set <- list(c("volatile.acidity"),
-c("chlorides"),
-c("free.sulfur.dioxide"),
-c("total.sulfur.dioxide"),
-c("pH"),
-c("sulphates"),
-c("alcohol"),
-c("I(sulphates^2)", "I(sulphates^3)"),
-c("sulphates", "I(sulphates^2)", "I(sulphates^3)"))
+sele_mod <- polr(formula = sele_formula,
+              data = WhiteWine,
+              method = "probit")
 
+sur1 <- surr_rsq(model = sele_mod,
+              full_model = sele_mod,
+              data = WhiteWine,
+              avg.num = 100)
 
-fullmodel <- polr(formula = full_formula,data=RedWine, method  = "probit")
-select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity -
-citric.acid - residual.sugar - density")
-
-Rank_table <- surr_rsq_rank(object  = select_model,
-data    = RedWine,
-var.set = test_var_set,avg.num = 30)
-
-Rank_table$Ranking
+rank_tab_sur1 <- surr_rsq_rank(object  = sur1,
+                            data    = WhiteWine,
+                            avg.num = 30)
 
 }

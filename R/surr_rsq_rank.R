@@ -16,35 +16,26 @@
 #'
 #' @return An list that contains the contribution of Surrogate R-squared for each variable.
 #' @examples
-#' data("RedWine")
+#' data("WhiteWine")
 #'
-#' full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity + citric.acid
-#' + residual.sugar + chlorides + free.sulfur.dioxide +total.sulfur.dioxide +
-#' density + pH + sulphates + alcohol)
+#' sele_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity +
+#'                           residual.sugar +  + free.sulfur.dioxide +
+#'                           pH + sulphates + alcohol)
 #'
-#' test_var_set <- list(c("volatile.acidity"),
-#' c("chlorides"),
-#' c("free.sulfur.dioxide"),
-#' c("total.sulfur.dioxide"),
-#' c("pH"),
-#' c("sulphates"),
-#' c("alcohol"),
-#' c("I(sulphates^2)", "I(sulphates^3)"),
-#' c("sulphates", "I(sulphates^2)", "I(sulphates^3)"))
+#' sele_mod <- polr(formula = sele_formula,
+#'               data = WhiteWine,
+#'               method = "probit")
 #'
+#' sur1 <- surr_rsq(model = sele_mod,
+#'               full_model = sele_mod,
+#'               data = WhiteWine,
+#'               avg.num = 100)
 #'
-#' fullmodel <- polr(formula = full_formula,data=RedWine, method  = "probit")
-#' select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity -
-#' citric.acid - residual.sugar - density")
-#'
-#' Rank_table <- surr_rsq_rank(object  = select_model,
-#' data    = RedWine,
-#' var.set = test_var_set,avg.num = 30)
-#'
-#' Rank_table$Ranking
+#' rank_tab_sur1 <- surr_rsq_rank(object  = sur1,
+#'                             data    = WhiteWine,
+#'                             avg.num = 30)
 #'
 #' @export
-#'
 #'
 surr_rsq_rank <-
   function(object,
@@ -53,46 +44,98 @@ surr_rsq_rank <-
            var.set = NA,
            ...){
     # Header
-    final_model_formula <- eval(object$call[[2]])
+    reduced_model <- object$reduced_model
+    full_model <- object$full_model
+
+    final_model_formula <- eval(full_model$call[[2]])
 
     if (is.na(var.set)[1]) {
       # final_variables <- names(object$coefficients)
-      final_variables <- attr(object$terms, "term.labels")
+      final_variables <- attr(full_model$terms, "term.labels")
     } else {
       final_variables <- lapply(X = var.set, FUN = function(x) paste(x, collapse = "-"))
     }
 
     a <- length(final_variables)
 
-    surr_rsq_full <-
-      surr_rsq(model = object,
-               full_model = object,
-               data = data,
-               avg.num)[[1]]
+    surr_rsq_full <- object$surr_rsq
 
     result <- c()
-    surr_rsq_temp <- c()
+    surr_rsq_temp <- surr_rsq_redu <- c()
 
     for(i in 1:a){
       # update(final_model_formula,~.-final_variables[i])
-      # Here has bug, some update cannot be execute so will trigger bug "object 'model_temp_for' not found"
-      model_temp_for <- update(object, paste("~ . -", final_variables[i]))
-      # model_temp <- polr(model_temp_for, data = data, method = "probit")
-      surr_rsq_temp[i] <- surr_rsq(model_temp_for,
-                                   object,
-                                   data,
-                                   avg.num)[[1]]
-      result[i] <- percent((surr_rsq_full - surr_rsq_temp[i])/surr_rsq_full,0.01)
+
+      tryCatch({
+        # Here has bug, some update cannot be execute so will trigger bug "full_model 'model_temp_for' not found"
+        model_temp_for <- update(full_model, paste("~ . -", final_variables[i]))
+        # model_temp <- polr(model_temp_for, data = data, method = "probit")
+        surr_rsq_temp[i] <- surr_rsq(model_temp_for,
+                                     full_model,
+                                     data,
+                                     avg.num)[[1]]
+        surr_rsq_redu[i] <- surr_rsq_full - surr_rsq_temp[i]
+        result[i] <- percent(surr_rsq_redu[i]/surr_rsq_full,0.01)
+      }, error=function(e){
+        message("Error in fittiing a reduced model without ", final_variables[i], ":\n")
+        surr_rsq_temp[i] <<- surr_rsq_redu[i] <<- result[i] <<- NA
+      })
+
     }
 
-    result_table <- cbind.data.frame(var_set=unlist(final_variables), surr_rsq_temp, result)
-    names(result_table) <- c("Variable names","SurrogateR2","Importance")
-    result_table <- result_table[order(result_table$SurrogateR2,decreasing = FALSE),]
+    result_table <-
+      cbind.data.frame(var_set=unlist(final_variables),
+                       surr_rsq_temp,
+                       surr_rsq_redu,
+                       result)
+    names(result_table) <- c("Removed Variable","SurrogateRsq", "Reduction", "Contribution")
+    result_table <- result_table[order(result_table$SurrogateRsq, decreasing = FALSE),]
     Ranking <- c(1:a)
     result_table$Ranking <- Ranking
+    rownames(result_table) <- NULL
+
+    # Add attribution
+    attr(result_table, "total_rsq") <- surr_rsq_full
+
+    # Add class to the result_table
+    class(result_table) <- c("surr_rsq_rank", class(result_table))
 
     return(result_table)
   }
 
 
+#' @title Print surrogate R-squared ranking table
+#' @param x A surr_rsq_rank object for printing out results.
+#'
+#' @param digits A default number to specify decimal digit values.
+#' @param ... Additional optional arguments.
+#'
+#' @name print
+#' @method print surr_rsq_rank
+#'
+#' @return Print surrogate R-squared ranking table from a surr_rsq_rank object
+#'
+#' @importFrom stats formula
+#'
+#' @export
+#' @keywords internal
+print.surr_rsq_rank <- function(x, digits = max(2, getOption("digits")-2), ...) {
+  total_rsq <- attr(x, "total_rsq")
+
+  x_temp <- as.data.frame(x)
+  x_temp$SurrogateRsq <-
+    format(round(x_temp$SurrogateRsq,
+                 digits=max(2, (digits))),
+           digits = max(2, (digits)))
+  x_temp$Reduction <-
+    format(round(x_temp$Reduction,
+                 digits=max(2, (digits))),
+           digits = max(2, (digits)))
+
+  print(x_temp, row.names = FALSE)
+
+  cat("------------------------------------------------------------------------ \n")
+  cat("The total surrogate R-squared of the full model is: \n")
+  print(total_rsq, digits)
+}
 
