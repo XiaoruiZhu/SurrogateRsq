@@ -9,9 +9,12 @@ Authors@R:
     person(given = "Dungang", family = "Liu",
            role = c("ctb"),
            email = "dungang.liu@uc.edu"),
-    person(given = "Zewei ", family = "Lin", 
+    person(given = "Zewei", family = "Lin", 
            role = c("ctb"), 
-           email = "linzw@mail.uc.edu"))
+           email = "linzw@mail.uc.edu"),
+    person(given = "Brandon", family = "Greenwell", 
+           role = c("ctb"), 
+           email = "greenwell.brandon@gmail.com"))
 Maintainer: Xiaorui (Jeremy) Zhu <zhuxiaorui1989@gmail.com>
 Description: To assess and compare the models' goodness of fit, $R^2$ is one 
               of the most popular measures. For categorical data analysis, however, no universally

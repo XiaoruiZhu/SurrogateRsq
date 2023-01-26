@@ -49,8 +49,8 @@ surr_rsq <-
            avg.num = 30, ...){
     # full_model_formula <- eval(full_model$call[[2]])
     # model_formula <- eval(model$call[[2]])
-    full_model_formula <- formula(full_model$terms)
     model_formula <- formula(model$terms)
+    full_model_formula <- formula(full_model$terms)
 
     #get the formula of reduced model and full model
     if(all(names(model$coefficients) %in% names(full_model$coefficients))){
