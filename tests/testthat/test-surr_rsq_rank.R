@@ -44,7 +44,17 @@ test_that("test surr_rsq_rank", {
 
   rank_tab_sur3 <- surr_rsq_rank(object  = sur3,
                                  data    = WhiteWine,
-                                 avg.num = 30)
+                                 avg.num = 300)
+
+  var_set <- list(c("alcohol", "volatile.acidity"),
+                  c("residual.sugar", "free.sulfur.dioxide"))
+
+  Rank_table2 <-
+    surr_rsq_rank(object  = sur3,
+                  data    = WhiteWine,
+                  var.set = var_set,
+                  avg.num = 300)
+  # print(Rank_table2, digits = 2)
 
   expect_true(!is.null(rank_tab_sur2), "list")
   expect_true(!is.null(rank_tab_sur3), "list")

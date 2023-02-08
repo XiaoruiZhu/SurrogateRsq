@@ -51,9 +51,11 @@ surr_rsq_rank <-
 
     if (is.na(var.set)[1]) {
       # final_variables <- names(object$coefficients)
-      final_variables <- attr(full_model$terms, "term.labels")
+      show_variables <- final_variables <-
+        attr(full_model$terms, "term.labels")
     } else {
       final_variables <- lapply(X = var.set, FUN = function(x) paste(x, collapse = "-"))
+      show_variables <- lapply(X = var.set, FUN = function(x) paste(x, collapse = "+"))
     }
 
     a <- length(final_variables)
@@ -84,7 +86,7 @@ surr_rsq_rank <-
     }
 
     result_table <-
-      cbind.data.frame(var_set=unlist(final_variables),
+      cbind.data.frame(var_set=unlist(show_variables),
                        surr_rsq_temp,
                        surr_rsq_redu,
                        result)
