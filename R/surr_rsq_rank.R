@@ -70,10 +70,10 @@ surr_rsq_rank <-
         # Here has bug, some update cannot be execute so will trigger bug "full_model 'model_temp_for' not found"
         model_temp_for <- update(full_model, paste("~ . -", final_variables[i]))
         # model_temp <- polr(model_temp_for, data = data, method = "probit")
-        surr_rsq_temp[i] <- surr_rsq(model_temp_for,
-                                     full_model,
-                                     data,
-                                     avg.num)[[1]]
+        surr_rsq_temp[i] <- surr_rsq(model = model_temp_for,
+                                     full_model = full_model,
+                                     data = data,
+                                     avg.num = avg.num)[[1]]
         surr_rsq_redu[i] <- surr_rsq_full - surr_rsq_temp[i]
         result[i] <- percent(surr_rsq_redu[i]/surr_rsq_full,0.01)
       }, error=function(e){
