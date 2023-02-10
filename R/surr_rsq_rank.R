@@ -31,9 +31,9 @@
 #'               data = WhiteWine,
 #'               avg.num = 100)
 #'
-#' rank_tab_sur1 <- surr_rsq_rank(object  = sur1,
-#'                             data    = WhiteWine,
-#'                             avg.num = 30)
+#' # rank_tab_sur1 <- surr_rsq_rank(object  = sur1,
+#' #                            data    = WhiteWine,
+#' #                             avg.num = 30)
 #'
 #' @export
 #'

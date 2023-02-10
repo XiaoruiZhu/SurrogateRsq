@@ -22,7 +22,7 @@
 #'   \item \code{total.sulfur.dioxide} The total sulfur dioxide is in unit mg/dm^3.
 #'   \item \code{density} The density is in unit g/cm^3.
 #'   \item \code{pH} The wine's pH value.
-#'   \item \code{sulphates} The sulphates is in unit g(potassium sulphate)/dm^3.
+#'   \item \code{sulphates} The sulphates is in unit g(potassium sulphates)/dm^3.
 #'   \item \code{alcohol} The alcohol is in unit \% vol.
 #'   }
 #'
@@ -64,7 +64,7 @@ NULL
 #'   \item \code{total.sulfur.dioxide} The total sulfur dioxide is in unit mg/dm^3.
 #'   \item \code{density} The density is in unit g/cm^3.
 #'   \item \code{pH} The wine's pH value.
-#'   \item \code{sulphates} The sulphates is in unit g(potassium sulphate)/dm^3.
+#'   \item \code{sulphates} The sulphates is in unit g(potassium sulphates)/dm^3.
 #'   \item \code{alcohol} The alcohol is in unit \% vol.
 #'   }
 #'

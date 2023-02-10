@@ -49,6 +49,6 @@ data = RedWine, avg.num = 30)
 
 }
 \references{
-Zhu, X., Liu, D., Lin, Z. (2022). SurrRsq: an R package for evaluating the goodness of fit using
-the surrogate R-squared
+Zhu, X., Liu, D., Lin, Z., Greenwell, B. (2022). SurrogateRsq: an R package for categorical
+data goodness-of-fit analysis using the surrogate R-squared
 }

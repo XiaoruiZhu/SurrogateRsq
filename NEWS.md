@@ -1,8 +1,12 @@
 # Changes in version 0.1.1
 
+## Major features
+
+1. The package supports the ordinal logistic regression models.
+
 ## Features needed
 
-1. It has "print()" for surr_rsq, but the print() or summary() functions are needed for surr_rsp_ci and surr_rsq_rank.
+1. It has "print()" for surr_rsq, but the print() or summary() functions are needed for surr_rsq_ci and surr_rsq_rank.
 
 2. ...
 
@@ -10,7 +14,7 @@
 
 ## Major features
 
-1. This pacakge has four main functions: rsq, surr_rsq, surr_rsq_ci, and surr_rsq_rank.
+1. This package has four main functions: rsq, surr_rsq, surr_rsq_ci, and surr_rsq_rank.
 
 2. surr_rsq() is a function for producing a point estimate of the surrogate R-squared for a user-specified model.
 
