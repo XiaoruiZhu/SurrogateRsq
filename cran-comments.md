@@ -1,3 +1,7 @@
+Thanks, we see you used $R^2$ in both Title and Description fields.
+Unfortunately, LaTeX markup is not supported in the DESCRIPTION file, 
+hence please rewrite as "R-squared".
+
 * using R Under development (unstable) (2022-11-23 r83380)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 
