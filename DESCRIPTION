@@ -1,6 +1,6 @@
 Package: SurrogateRsq
 Type: Package
-Title: Evaluating the Goodness of Fit using the Surrogate $R^2$
+Title: Evaluating the Goodness of Fit using the Surrogate R-squared
 Version: 0.1.0
 Authors@R: 
   c(person(given = "Xiaorui (Jeremy)", family = "Zhu",
@@ -16,14 +16,14 @@ Authors@R:
            role = c("ctb"), 
            email = "greenwell.brandon@gmail.com"))
 Maintainer: Xiaorui (Jeremy) Zhu <zhuxiaorui1989@gmail.com>
-Description: To assess and compare the models' goodness of fit, $R^2$ is one 
+Description: To assess and compare the models' goodness of fit, R-squared is one 
               of the most popular measures. For categorical data analysis, however, no universally
-              adopted $R^2$ measure can resemble the ordinary least square (OLS) $R^2$ for 
-              linear models with continuous data. This package implement the surrogate $R^2$
+              adopted R-squared measure can resemble the ordinary least square (OLS) R-squared for 
+              linear models with continuous data. This package implement the surrogate R-squared
               measure for categorical data analysis, which is proposed in the study of Dungang Liu, Xiaorui Zhu, Brandon Greenwell, 
               and Zewei Lin (2022). It can generate a point or interval measure of the surrogate
-              $R^2$. It can also provide a ranking measure of the percentage contribution of
-              each variable to the overall surrogate $R^2$. This ranking assessment allows one to
+              R-squared. It can also provide a ranking measure of the percentage contribution of
+              each variable to the overall surrogate R-squared. This ranking assessment allows one to
               check the importance of each variable in terms of their explained variance. This package can
               be jointly used with other existing R packages for variable selection and model 
               diagnostics in the model-building process. 
