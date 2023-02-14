@@ -8,3 +8,4 @@ src/*.dll
 .DS_Store
 R/.DS_Store
 docs
+inst/doc
