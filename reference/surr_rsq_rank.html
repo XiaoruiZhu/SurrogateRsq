@@ -21,6 +21,12 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/workflow.html">Workflow</a>
+  </div>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
@@ -77,7 +83,9 @@ a model will fit by removing the specified variables.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>An list that contains the contribution of Surrogate R-squared for each variable.</p>
+<p>The default return is a list that contains the contribution of Surrogate R-squared for each
+variable in the <code>full_model</code>. If the <code>var.set</code> is specified, the return is a list of the
+contribution of the groups of variables in the <code>var.set</code>.</p>
     </div>
 
     <div class="section level2">
@@ -96,10 +104,14 @@ a model will fit by removing the specified variables.</p></dd>
 <span class="r-in"><span>              full_model <span class="op">=</span> <span class="va">sele_mod</span>,</span></span>
 <span class="r-in"><span>              data <span class="op">=</span> <span class="va">WhiteWine</span>,</span></span>
 <span class="r-in"><span>              avg.num <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># rank_tab_sur1 &lt;- surr_rsq_rank(object  = sur1,</span></span></span>
-<span class="r-in"><span><span class="co">#                            data    = WhiteWine,</span></span></span>
-<span class="r-in"><span><span class="co">#                             avg.num = 30)</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">rank_tab_sur1</span> <span class="op">&lt;-</span> <span class="fu">surr_rsq_rank</span><span class="op">(</span>object  <span class="op">=</span> <span class="va">sur1</span>,</span></span>
+<span class="r-in"><span>                               data    <span class="op">=</span> <span class="va">WhiteWine</span>,</span></span>
+<span class="r-in"><span>                               avg.num <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(full_model$call[[2]]):</span> object 'sele_formula' not found</span>
+<span class="r-in"><span><span class="fu"><a href="print.html">print</a></span><span class="op">(</span><span class="va">rank_tab_sur1</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in print(rank_tab_sur1):</span> object 'rank_tab_sur1' not found</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
