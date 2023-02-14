@@ -82,7 +82,7 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="surrogatersq-an-r-package-for-evaluating-the-goodness-of-fit-using-the-surrogate-r-squared">SurrogateRsq: an R Package for evaluating the goodness of fit using the surrogate R-squared<a class="anchor" aria-label="anchor" href="#surrogatersq-an-r-package-for-evaluating-the-goodness-of-fit-using-the-surrogate-r-squared"></a>
+<div class="page-header"><h1 id="surrogatersq-an-r-package-for-categorical-data-goodness-of-fit-analysis-using-the-surrogate-r-squared">SurrogateRsq: an R Package for categorical data goodness-of-fit analysis using the surrogate R-squared<a class="anchor" aria-label="anchor" href="#surrogatersq-an-r-package-for-categorical-data-goodness-of-fit-analysis-using-the-surrogate-r-squared"></a>
 </h1></div>
 <!-- badges: start -->
 
@@ -112,7 +112,7 @@
 </div>
 </div>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="simple-example">Simple example<a class="anchor" aria-label="anchor" href="#simple-example"></a>
 </h2>
 <p>The following example shows the R code for analyzing white wine-tasting data ( data(“WhiteWine”) ).The tasting dataset of white wine contains 4898 samples and 11 explanatory variables. The explanatory variables are the physicochemical features of the wine, for example, the acidity, sugar, dioxide, pH, and others. The response variable is the tasting rating score of the wine, which ranges from 0 (very bad) to 10 (excellent).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -146,26 +146,13 @@
 <span><span class="va">surr_obj_white</span><span class="op">$</span><span class="va">surr_rsq</span></span>
 <span></span>
 <span><span class="co"># surrogate R-squared rank table</span></span>
-<span><span class="va">test_var_set_white</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"alcohol"</span><span class="op">)</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"volatile.acidity"</span><span class="op">)</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"residual.sugar"</span><span class="op">)</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"free.sulfur.dioxide"</span><span class="op">)</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sulphates"</span><span class="op">)</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fixed.acidity"</span><span class="op">)</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pH"</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
 <span></span>
 <span><span class="va">Rank_table_white</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="reference/surr_rsq_rank.html">surr_rsq_rank</a></span><span class="op">(</span>object  <span class="op">=</span> <span class="va">select_model_white</span>, </span>
 <span>                data    <span class="op">=</span> <span class="va">WhiteWine</span>,</span>
-<span>                var.set <span class="op">=</span> <span class="va">test_var_set_white</span>, </span>
 <span>                avg.num <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">Rank_table_white</span><span class="op">$</span><span class="va">Reduction</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html" class="external-link">percent</a></span><span class="op">(</span><span class="va">surr_obj_white</span><span class="op">$</span><span class="va">surr_rsq</span> <span class="op">-</span> <span class="va">Rank_table_white</span><span class="op">$</span><span class="va">SurrogateR2</span>, <span class="fl">0.01</span><span class="op">)</span></span>
-<span><span class="va">Rank_table_white</span></span>
+<span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">Rank_table_white</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># 95% confidence interval surrogate R-squared</span></span>
 <span></span>
@@ -174,6 +161,164 @@
 <span>                                B         <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
+<div class="section level1">
+<h1 id="a-recommended-workflow-for-categorical-data-modeling-using-surrogatersq-and-other-statistical-tools">A recommended workflow for categorical data modeling using SurrogateRsq and other statistical tools<a class="anchor" aria-label="anchor" href="#a-recommended-workflow-for-categorical-data-modeling-using-surrogatersq-and-other-statistical-tools"></a>
+</h1>
+<p>In empirical studies, goodness-of-fit analysis should be used jointly with other statistical tools, such as variable screening/selection and model diagnostics, in the model-building and refining process. In this section, we discuss how to follow the workflow in the following diagram to carry out statistical modeling for categorical data. We also discuss how to use the () package with other existing R packages to implement this workflow. As Liu et al. (2023)’s method requires a full model, researchers and practitioners can also follow the process in Figure to initiate a full model so as to facilitate goodness-of-fit analysis.</p>
+<div class="figure">
+<img src="articles/flowchart.png" style="width:90.0%" alt=""><p class="caption">An illustration of the workflow for modeling categorical data</p>
+</div>
+<ol style="list-style-type: decimal">
+<li><p>In (), we can use the AIC/BIC/LASSO or any other variable selection methods deemed appropriate to trim or prune the set of explanatory variables to a ``manageable’’ size (e.g., less than 20). The goal is to eliminate irrelevant variables so that researchers can better investigate the model structure and assessment. The variable selection techniques have been studied extensively in the literature. Specifically, one can implement (i) the best subset selection using the function () in the () package; (ii) the forward/backward/stepwise selection using the function () in the R core; (iii) the shrinkage methods including the (adaptive) LASSO in the  package; (iv) the regularized ordinal regression model with an elastic net penalty in the  package; and (v) the penalized regression models with minimax concave penalty (MCP) or smoothly clipped absolute deviation (SCAD) penalty in the  package. When the dimension is ultrahigh, the sure independence screening method can be applied through the  package. When the variables are grouped, one can apply the group selection methods including the group lasso, group MCP, and group SCAD through the  package. In some cases, () may be skipped if the experiment only involves a (small) set of controlled variables. In these cases, the controlled variables should be modeled regardless of statistical significance or predictive power. We limit our discussion here because our focus is on goodness-of-fit analysis.</p></li>
+<li><p>In (), we can use diagnostic tools to inspect the model passed from (), adjust its functional form, and add additional elements if needed (e.g., higher-order or interaction terms). For categorical data, we can use the function () in the  package to generate three types of diagnostic plots: residual Q-Q plot, residual-vs-covariate plot, and residual-vs-fitted plots. These plots can be used to visualize the discrepancy between the working model and the ``true’’ model. Similar plots can be produced using the function () in the  package. These diagnostic plots give practitioners insights on how to refine the model by possibly transforming the regression form or adding higher-order terms. At the end of this diagnosing and refining process, we expect to have a  ((_{full})) for subsequent inferences including goodness-of-fit analysis.</p></li>
+<li><p>In (), we can use the functions developed in our  package to examine the goodness of fit of the full model (_{full}) and various reduced models of interest. Specifically, we can produce the point and interval estimates of the surrogate (R^2) by using the functions () and (). In addition, we can quantify the contribution of each individual variable to the overall surrogate (R^2) by using the function (). Based on the percentage contribution, the function () also provides ranks of the explanatory variables to show their relative importance. In the following section, we will show in a case study how our package can help us understand the relative importance of explanatory variables and compare the results across different samples. The ``comparability’’ across different samples and/or models is an appealing feature of the surrogate (R^2), which will be discussed in detail along with the R implementation.</p></li>
+</ol>
+<div class="section level2">
+<h2 id="a-detailed-example-with-other-existing-r-packages-for-variable-selection-and-model-diagnostics">A detailed example with other existing R packages for variable selection and model diagnostics<a class="anchor" aria-label="anchor" href="#a-detailed-example-with-other-existing-r-packages-for-variable-selection-and-model-diagnostics"></a>
+</h2>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Load packages </span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://xiaoruizhu.github.io/SurrogateRsq/">SurrogateRsq</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Load data and preparation </span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"RedWine"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"WhiteWine"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### We remove an outlier where total.sulfur.dioxide&gt;200.</span></span>
+<span><span class="va">RedWine2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">RedWine</span>, <span class="va">total.sulfur.dioxide</span> <span class="op">&lt;=</span> <span class="fl">200</span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="initiating-a-full-model-using-variable-selection-and-model-diagnostics">Initiating a full model using variable selection and model diagnostics<a class="anchor" aria-label="anchor" href="#initiating-a-full-model-using-variable-selection-and-model-diagnostics"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">full_formula</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/formula.html" class="external-link">as.formula</a></span><span class="op">(</span><span class="va">quality</span> <span class="op">~</span> <span class="va">fixed.acidity</span> <span class="op">+</span> <span class="va">volatile.acidity</span> <span class="op">+</span> <span class="va">citric.acid</span> <span class="op">+</span> </span>
+<span>               <span class="va">residual.sugar</span> <span class="op">+</span> <span class="va">chlorides</span> <span class="op">+</span> <span class="va">free.sulfur.dioxide</span> <span class="op">+</span></span>
+<span>               <span class="va">total.sulfur.dioxide</span> <span class="op">+</span> <span class="va">density</span> <span class="op">+</span> <span class="va">pH</span> <span class="op">+</span> <span class="va">sulphates</span> <span class="op">+</span> </span>
+<span>               <span class="va">alcohol</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">naive_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/polr.html" class="external-link">polr</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">full_formula</span>, </span>
+<span>                    data    <span class="op">=</span> <span class="va">RedWine2</span>, </span>
+<span>                    method  <span class="op">=</span> <span class="st">"probit"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">naive_model</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Use exhuastive search for searching the best model</span></span>
+<span></span>
+<span><span class="va">fullmodel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/polr.html" class="external-link">polr</a></span><span class="op">(</span><span class="va">quality</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">RedWine2</span>, method <span class="op">=</span> <span class="st">"probit"</span><span class="op">)</span></span>
+<span><span class="va">model_exhau</span> <span class="op">&lt;-</span> <span class="fu">leaps</span><span class="fu">::</span><span class="fu">regsubsets</span><span class="op">(</span>x     <span class="op">=</span> <span class="va">quality</span> <span class="op">~</span> <span class="va">.</span>, </span>
+<span>                                 data  <span class="op">=</span> <span class="va">RedWine2</span>, </span>
+<span>                                 nbest <span class="op">=</span> <span class="fl">2</span>, </span>
+<span>                                 nvmax <span class="op">=</span> <span class="fl">11</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">model_exhau</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">select_model</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/update.html" class="external-link">update</a></span><span class="op">(</span><span class="va">naive_model</span>, </span>
+<span>         formula. <span class="op">=</span> </span>
+<span>           <span class="st">". ~ . - fixed.acidity - citric.acid - residual.sugar - density"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Conduct model diagnostics by following the workflow</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/XiaoruiZhu/PAsso" class="external-link">PAsso</a></span><span class="op">)</span></span>
+<span><span class="va">p_sulphates</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/PAsso/man/diagnostic.plot.html" class="external-link">diagnostic.plot</a></span><span class="op">(</span>object    <span class="op">=</span> <span class="va">select_model</span>, </span>
+<span>                  output    <span class="op">=</span> <span class="st">"covariate"</span>, </span>
+<span>                  x         <span class="op">=</span> <span class="va">RedWine2</span><span class="op">$</span><span class="va">sulphates</span>, </span>
+<span>                  xlab      <span class="op">=</span> <span class="st">"(a)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod_add_square</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/update.html" class="external-link">update</a></span><span class="op">(</span><span class="va">select_model</span>, formula. <span class="op">=</span> <span class="st">". ~ . + I(sulphates^2)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p_sulphates2</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/PAsso/man/diagnostic.plot.html" class="external-link">diagnostic.plot</a></span><span class="op">(</span>object    <span class="op">=</span> <span class="va">mod_add_square</span>, </span>
+<span>                  output    <span class="op">=</span> <span class="st">"covariate"</span>, </span>
+<span>                  x         <span class="op">=</span> <span class="va">RedWine2</span><span class="op">$</span><span class="va">sulphates</span>, </span>
+<span>                  xlab      <span class="op">=</span> <span class="st">"(b)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod_full</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/update.html" class="external-link">update</a></span><span class="op">(</span><span class="va">mod_add_square</span>, formula. <span class="op">=</span> <span class="st">". ~ . + I(sulphates^3)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p_sulphates3</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/PAsso/man/diagnostic.plot.html" class="external-link">diagnostic.plot</a></span><span class="op">(</span>object    <span class="op">=</span> <span class="va">mod_full</span>, </span>
+<span>                  output    <span class="op">=</span> <span class="st">"covariate"</span>, </span>
+<span>                  x         <span class="op">=</span> <span class="va">RedWine2</span><span class="op">$</span><span class="va">sulphates</span>, </span>
+<span>                  xlab      <span class="op">=</span> <span class="st">"(c)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">gridExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">p_sulphates</span>, <span class="va">p_sulphates2</span>, <span class="va">p_sulphates3</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Compare models</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">stargazer</span><span class="op">)</span></span>
+<span><span class="fu">stargazer</span><span class="op">(</span><span class="va">naive_model</span>, <span class="va">select_model</span>, <span class="va">mod_add_square</span>, <span class="va">mod_full</span>, </span>
+<span>          column.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Naive"</span>, <span class="st">"Selected"</span>, <span class="st">"+ sulphates-squared"</span>, <span class="st">"+ sulphates-cubic"</span><span class="op">)</span>,</span>
+<span>          order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fixed.acidity"</span>, <span class="st">"volatile.acidity"</span>, <span class="st">"citric.acid"</span>,</span>
+<span>                    <span class="st">"residual.sugar"</span>, <span class="st">"chlorides"</span>, <span class="st">"free.sulfur.dioxide"</span>,</span>
+<span>                    <span class="st">"total.sulfur.dioxide"</span>, <span class="st">"density"</span>, <span class="st">"pH"</span>, </span>
+<span>                    <span class="st">"sulphates"</span>, <span class="st">"I(sulphates-sqr)"</span>, <span class="st">"I(sulphates-cubic)"</span>,</span>
+<span>                    <span class="st">"alcohol"</span><span class="op">)</span>,</span>
+<span>          type <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="goodness-of-fit-analysis-and-its-extended-utility">Goodness-of-fit analysis and its extended utility<a class="anchor" aria-label="anchor" href="#goodness-of-fit-analysis-and-its-extended-utility"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://xiaoruizhu.github.io/SurrogateRsq/">SurrogateRsq</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">777</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">surr_obj_mod_full</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="reference/surr_rsq.html">surr_rsq</a></span><span class="op">(</span>model      <span class="op">=</span> <span class="va">mod_full</span>,</span>
+<span>           full_model <span class="op">=</span> <span class="va">mod_full</span>, </span>
+<span>           data       <span class="op">=</span> <span class="va">RedWine2</span>, </span>
+<span>           avg.num    <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">surr_obj_mod_full</span><span class="op">$</span><span class="va">surr_rsq</span>, </span>
+<span>      digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Surrogate R-squared of a smaller model (select_model)</span></span>
+<span></span>
+<span><span class="va">surr_obj_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/surr_rsq.html">surr_rsq</a></span><span class="op">(</span>model   <span class="op">=</span> <span class="va">select_model</span>, </span>
+<span>                        full_model <span class="op">=</span> <span class="va">mod_full</span>, </span>
+<span>                        data       <span class="op">=</span> <span class="va">RedWine2</span>, </span>
+<span>                        avg.num    <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">surr_obj_lm</span><span class="op">$</span><span class="va">surr_rsq</span>, </span>
+<span>      digit <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Construct the confidence interval </span></span>
+<span></span>
+<span><span class="va">full_mod_rsq_ci</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="reference/surr_rsq_ci.html">surr_rsq_ci</a></span><span class="op">(</span>surr_rsq <span class="op">=</span> <span class="va">surr_obj_mod_full</span>,</span>
+<span>              alpha    <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>              B        <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span>
+<span><span class="va">full_mod_rsq_ci</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Creat the importance ranking table </span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">777</span><span class="op">)</span></span>
+<span><span class="co"># Importance ranking table of the full model</span></span>
+<span><span class="va">Rank_table_mod_full</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="reference/surr_rsq_rank.html">surr_rsq_rank</a></span><span class="op">(</span>object  <span class="op">=</span> <span class="va">surr_obj_mod_full</span>, </span>
+<span>                data    <span class="op">=</span> <span class="va">RedWine2</span>,</span>
+<span>                avg.num <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">Rank_table_mod_full</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Importance ranking table of two groups of variables</span></span>
+<span><span class="va">var_set</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sulphates"</span>, <span class="st">"I(sulphates^2)"</span>, <span class="st">"I(sulphates^3)"</span><span class="op">)</span>,</span>
+<span>                <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"I(sulphates^2)"</span>, <span class="st">"I(sulphates^3)"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Rank_table2</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="reference/surr_rsq_rank.html">surr_rsq_rank</a></span><span class="op">(</span>object  <span class="op">=</span> <span class="va">surr_obj_mod_full</span>, </span>
+<span>                data    <span class="op">=</span> <span class="va">RedWine2</span>,</span>
+<span>                var.set <span class="op">=</span> <span class="va">var_set</span>, </span>
+<span>                avg.num <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">Rank_table2</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+</div>
+
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
@@ -201,7 +346,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=SurrogateRsq" class="external-link"><img src="https://img.shields.io/cran/v/SurrogateRsq?logo=R"></a></li>
-<li><a href="https://cran.r-project.org/web/checks/check_results_SurrogateRsq.html" class="external-link"><img src="https://cranchecks.info/badges/summary/SurrogateRsq" alt="CRAN checks"></a></li>
+<li><a href="https://cran.r-project.org/web/checks/check_results_SurrogateRsq.html" class="external-link"><img src="https://badges.cranchecks.info/worst/SurrogateRsq.svg" alt="CRAN checks"></a></li>
 <li><a href="https://cranlogs.r-pkg.org/badges/grand-total/SurrogateRsq" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/SurrogateRsq?color=blue"></a></li>
 <li><a href="https://cranlogs.r-pkg.org/badges/last-month/SurrogateRsq?color=green" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-month/SurrogateRsq?color=green"></a></li>
 <li><a href="https://cranlogs.r-pkg.org/badges/last-week/SurrogateRsq?color=yellow" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-week/SurrogateRsq?color=yellow"></a></li>
