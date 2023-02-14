@@ -39,13 +39,14 @@ full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity +
 citric.acid+ residual.sugar + chlorides + free.sulfur.dioxide +
 total.sulfur.dioxide + density + pH + sulphates + alcohol)
 
-fullmodel <- polr(formula = full_formula,
+full_mod <- polr(formula = full_formula,
 data=RedWine, method  = "probit")
 
 select_model <- update(fullmodel, formula. = ". ~ . - fixed.acidity -
 citric.acid - residual.sugar - density")
-surr_rsq(model = select_model, full_model = fullmodel,
-data = RedWine, avg.num = 30)
+surr_obj_sele_mod <- surr_rsq(model = select_model, full_model = full_mod,
+                               data = RedWine, avg.num = 30)
+print(surr_obj_sele_mod$surr_rsq, digits = 3)
 
 }
 \references{

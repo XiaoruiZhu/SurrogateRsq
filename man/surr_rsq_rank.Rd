@@ -21,7 +21,9 @@ a model will fit by removing the specified variables.}
 \item{...}{Additional optional arguments.}
 }
 \value{
-An list that contains the contribution of Surrogate R-squared for each variable.
+The default return is a list that contains the contribution of Surrogate R-squared for each
+variable in the \code{full_model}. If the \code{var.set} is specified, the return is a list of the
+contribution of the groups of variables in the \code{var.set}.
 }
 \description{
 This function calculates reduction of the surrogate R-squared goodness-of-fit of each variable to measure their relative explanatory power. This function creates a table containing the reductions of surrogate R-squared by removing each one of variables in the model.
@@ -41,9 +43,11 @@ sur1 <- surr_rsq(model = sele_mod,
               full_model = sele_mod,
               data = WhiteWine,
               avg.num = 100)
-
-# rank_tab_sur1 <- surr_rsq_rank(object  = sur1,
-#                            data    = WhiteWine,
-#                             avg.num = 30)
+\donttest{
+rank_tab_sur1 <- surr_rsq_rank(object  = sur1,
+                               data    = WhiteWine,
+                               avg.num = 30)
+print(rank_tab_sur1)
+}
 
 }

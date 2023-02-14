@@ -14,7 +14,9 @@
 #' @importFrom MASS polr
 #' @importFrom scales percent
 #'
-#' @return An list that contains the contribution of Surrogate R-squared for each variable.
+#' @return The default return is a list that contains the contribution of Surrogate R-squared for each
+#' variable in the \code{full_model}. If the \code{var.set} is specified, the return is a list of the
+#' contribution of the groups of variables in the \code{var.set}.
 #' @examples
 #' data("WhiteWine")
 #'
@@ -30,10 +32,12 @@
 #'               full_model = sele_mod,
 #'               data = WhiteWine,
 #'               avg.num = 100)
-#'
-#' # rank_tab_sur1 <- surr_rsq_rank(object  = sur1,
-#' #                            data    = WhiteWine,
-#' #                             avg.num = 30)
+#' \donttest{
+#' rank_tab_sur1 <- surr_rsq_rank(object  = sur1,
+#'                                data    = WhiteWine,
+#'                                avg.num = 30)
+#' print(rank_tab_sur1)
+#' }
 #'
 #' @export
 #'
@@ -43,8 +47,8 @@ surr_rsq_rank <-
            avg.num = 30,
            var.set = NA,
            ...){
-    # Header
-    reduced_model <- object$reduced_model
+    # Collect the full model from the "surr_rsq" object
+    # reduced_model <- object$reduced_model
     full_model <- object$full_model
 
     final_model_formula <- eval(full_model$call[[2]])
@@ -60,8 +64,13 @@ surr_rsq_rank <-
 
     a <- length(final_variables)
 
-    surr_rsq_full <- object$surr_rsq
+    # Calculate the surrogate R-squared of the full model
+    surr_rsq_full <- surr_rsq(model = full_model,
+                              full_model = full_model,
+                              data = data,
+                              avg.num = avg.num)[[1]]
 
+    # Initialize the results
     result <- c()
     surr_rsq_temp <- surr_rsq_redu <- c()
 
