@@ -1,7 +1,7 @@
 Package: SurrogateRsq
 Type: Package
 Title: Evaluating the Goodness of Fit using the Surrogate R-Squared
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
   c(person(given = "Xiaorui (Jeremy)", family = "Zhu",
            role = c("aut", "cre", "cph"),
