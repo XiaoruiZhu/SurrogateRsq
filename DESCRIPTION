@@ -22,7 +22,7 @@ Description: To assess and compare the models' goodness of fit, R-squared is one
               linear models with continuous data. This package implement the surrogate R-squared
               measure for categorical data analysis, which is proposed in the study of 
               Dungang Liu, Xiaorui Zhu, Brandon Greenwell, 
-              and Zewei Lin (2022) <https://doi.org/10.1111/bmsp.12289>. It can generate a point or interval measure of the surrogate
+              and Zewei Lin (2022) <doi:10.1111/bmsp.12289>. It can generate a point or interval measure of the surrogate
               R-squared. It can also provide a ranking measure of the percentage contribution of
               each variable to the overall surrogate R-squared. This ranking assessment allows one to
               check the importance of each variable in terms of their explained variance. This package can
