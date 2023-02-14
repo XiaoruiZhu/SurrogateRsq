@@ -4,7 +4,7 @@ Title: Evaluating the Goodness of Fit using the Surrogate R-Squared
 Version: 0.1.0
 Authors@R: 
   c(person(given = "Xiaorui (Jeremy)", family = "Zhu",
-           role = c("aut", "cre"),
+           role = c("aut", "cre", "cph"),
            email = "zhuxiaorui1989@gmail.com"),
     person(given = "Dungang", family = "Liu",
            role = c("ctb"),
@@ -40,9 +40,10 @@ Depends:
   progress (>= 1.2.0),
   scales (>= 1.1.1)
 Suggests: 
+    R.rsp,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://xiaoruizhu.github.io/SurrogateRsq/
-VignetteBuilder: knitr
+VignetteBuilder: R.rsp
