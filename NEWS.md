@@ -1,3 +1,5 @@
+# SurrogateRsq (development version)
+
 # SurrogateRsq 0.2.0
 
 # Changes in version 0.1.1
