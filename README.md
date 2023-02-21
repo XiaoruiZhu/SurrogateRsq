@@ -7,7 +7,6 @@
 [![](https://cranlogs.r-pkg.org/badges/grand-total/SurrogateRsq?color=blue)](https://cranlogs.r-pkg.org/badges/grand-total/SurrogateRsq)
 [![](https://cranlogs.r-pkg.org/badges/last-month/SurrogateRsq?color=green)](https://cranlogs.r-pkg.org/badges/last-month/SurrogateRsq?color=green)
 [![](https://cranlogs.r-pkg.org/badges/last-week/SurrogateRsq?color=yellow)](https://cranlogs.r-pkg.org/badges/last-week/SurrogateRsq?color=yellow)
-[![](https://api.travis-ci.com/XiaoruiZhu/SurrogateRsq.svg?branch=master)](https://api.travis-ci.com/XiaoruiZhu/SurrogateRsq.svg)
 <!-- badges: end -->
 
 Overview
@@ -66,12 +65,14 @@ surr_obj_white <-
            full_model = select_model_white, 
            data       = WhiteWine, 
            avg.num    = 30)
-surr_obj_white$surr_rsq
 
+print(surr_obj_white$surr_rsq, 
+      digits = 3)
+      
 # surrogate R-squared rank table
 
 Rank_table_white <- 
-  surr_rsq_rank(object  = select_model_white, 
+  surr_rsq_rank(object  = surr_obj_white, 
                 data    = WhiteWine,
                 avg.num = 30)
 
