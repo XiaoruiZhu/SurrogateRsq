@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   workflow: workflow.html
-last_built: 2023-02-19T20:14Z
+last_built: 2023-02-21T21:53Z
 urls:
   reference: https://xiaoruizhu.github.io/SurrogateRsq/reference
   article: https://xiaoruizhu.github.io/SurrogateRsq/articles

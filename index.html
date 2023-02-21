@@ -48,7 +48,7 @@
     
     <a class="navbar-brand me-2" href="index.html">SurrogateRsq</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,14 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
-      <ul class="navbar-nav"></ul>
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/XiaoruiZhu/SurrogateRsq/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 
     
@@ -116,7 +123,7 @@
 </h2>
 <p>The following example shows the R code for analyzing white wine-tasting data ( data(“WhiteWine”) ).The tasting dataset of white wine contains 4898 samples and 11 explanatory variables. The explanatory variables are the physicochemical features of the wine, for example, the acidity, sugar, dioxide, pH, and others. The response variable is the tasting rating score of the wine, which ranges from 0 (very bad) to 10 (excellent).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://xiaoruizhu.github.io/SurrogateRsq/">SurrogateRsq</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://xiaorui.site/SurrogateRsq/" class="external-link">SurrogateRsq</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"WhiteWine"</span><span class="op">)</span></span>
 <span></span>
@@ -143,12 +150,14 @@
 <span>           full_model <span class="op">=</span> <span class="va">select_model_white</span>, </span>
 <span>           data       <span class="op">=</span> <span class="va">WhiteWine</span>, </span>
 <span>           avg.num    <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
-<span><span class="va">surr_obj_white</span><span class="op">$</span><span class="va">surr_rsq</span></span>
 <span></span>
+<span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">surr_obj_white</span><span class="op">$</span><span class="va">surr_rsq</span>, </span>
+<span>      digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span>      </span>
 <span><span class="co"># surrogate R-squared rank table</span></span>
 <span></span>
 <span><span class="va">Rank_table_white</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="reference/surr_rsq_rank.html">surr_rsq_rank</a></span><span class="op">(</span>object  <span class="op">=</span> <span class="va">select_model_white</span>, </span>
+<span>  <span class="fu"><a href="reference/surr_rsq_rank.html">surr_rsq_rank</a></span><span class="op">(</span>object  <span class="op">=</span> <span class="va">surr_obj_white</span>, </span>
 <span>                data    <span class="op">=</span> <span class="va">WhiteWine</span>,</span>
 <span>                avg.num <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span></span>
@@ -179,7 +188,7 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load packages </span></span>
 <span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://xiaoruizhu.github.io/SurrogateRsq/">SurrogateRsq</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://xiaorui.site/SurrogateRsq/" class="external-link">SurrogateRsq</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Load data and preparation </span></span>
@@ -264,7 +273,7 @@
 <h3 id="goodness-of-fit-analysis-and-its-extended-utility">Goodness-of-fit analysis and its extended utility<a class="anchor" aria-label="anchor" href="#goodness-of-fit-analysis-and-its-extended-utility"></a>
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://xiaoruizhu.github.io/SurrogateRsq/">SurrogateRsq</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://xiaorui.site/SurrogateRsq/" class="external-link">SurrogateRsq</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">777</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">surr_obj_mod_full</span> <span class="op">&lt;-</span> </span>
@@ -323,6 +332,8 @@
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=SurrogateRsq" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/XiaoruiZhu/SurrogateRsq/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/XiaoruiZhu/SurrogateRsq/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -357,7 +368,6 @@
 <li><a href="https://cranlogs.r-pkg.org/badges/grand-total/SurrogateRsq" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/SurrogateRsq?color=blue"></a></li>
 <li><a href="https://cranlogs.r-pkg.org/badges/last-month/SurrogateRsq?color=green" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-month/SurrogateRsq?color=green"></a></li>
 <li><a href="https://cranlogs.r-pkg.org/badges/last-week/SurrogateRsq?color=yellow" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-week/SurrogateRsq?color=yellow"></a></li>
-<li><a href="https://api.travis-ci.com/XiaoruiZhu/SurrogateRsq.svg" class="external-link"><img src="https://api.travis-ci.com/XiaoruiZhu/SurrogateRsq.svg?branch=master"></a></li>
 </ul>
 </div>
 
