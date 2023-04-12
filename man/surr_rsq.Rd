@@ -4,14 +4,13 @@
 \alias{surr_rsq}
 \title{A function to calculate the surrogate R-squared measure.}
 \usage{
-surr_rsq(model, full_model, data, avg.num = 30, ...)
+surr_rsq(model, full_model, avg.num = 30, ...)
 }
 \arguments{
 \item{model}{A reduced model that needs to be investigated. The reported surrogate R-square is for this reduced model.}
 
-\item{full_model}{A full model that contains all of the predictors in the data set.}
-
-\item{data}{A dataset containing the categorical responses, predictors.}
+\item{full_model}{A full model that contains all of the predictors in the data set. This model object
+should also contain the dataset for fitting the full model and the reduced model in the first argument.}
 
 \item{avg.num}{The number of replication for the averaging of surrogate R-square.}
 

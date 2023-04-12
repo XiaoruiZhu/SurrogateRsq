@@ -5,8 +5,8 @@
 #' be called from other functions of this package. The generic S3 function \code{print}
 #' is also developed to present the surrogate R-squared measure.
 #' @param model A reduced model that needs to be investigated. The reported surrogate R-square is for this reduced model.
-#' @param full_model A full model that contains all of the predictors in the data set.
-#' @param data A dataset containing the categorical responses, predictors.
+#' @param full_model A full model that contains all of the predictors in the data set. This model object
+#' should also contain the dataset for fitting the full model and the reduced model in the first argument.
 #' @param avg.num The number of replication for the averaging of surrogate R-square.
 #' @param ... Additional optional arguments.
 #'
@@ -46,12 +46,14 @@
 surr_rsq <-
   function(model,
            full_model,
-           data,
            avg.num = 30, ...){
     # full_model_formula <- eval(full_model$call[[2]])
     # model_formula <- eval(model$call[[2]])
     model_formula <- formula(model$terms)
     full_model_formula <- formula(full_model$terms)
+
+    # Check if datasets from two model objects are the same!
+    data <- checkDataSame(model = model, full_model = full_model)
 
     #get the formula of reduced model and full model
     if(all(names(model$coefficients) %in% names(full_model$coefficients))){
@@ -60,13 +62,16 @@ surr_rsq <-
         # Fit models to ordinal response -----
         # fit_y_full <- glm(formula = formula_full, data = data, family = binomial(link = link))
         # This is for binary logistic regression
+
         # Surrogate with latent variables directly! -----
         # Generate surrogate response values
-        # set.seed(1521)
+
         res_s_temp <- rep(NA, times = avg.num)
         for (i in 1:avg.num) {
+          # import PAsso surrogate
+          # critical: generate surrogate response from the full model.
+
           data$s_full <- surrogate(full_model)
-          #import PAsso surrogate
 
           # Second approach: generate surrogate from True Null hypothesis!
           fit_s <- lm(formula = update(model_formula, s_full ~ . ), data = data)
@@ -120,4 +125,32 @@ print.surr_rsq <- function(x, digits = max(2, getOption("digits")-2), ...) {
   print.default(temp,
                 print.gap = 2, na.print = "",
                 quote = FALSE, ...)
+}
+
+
+#' @keywords internal
+getDatafromModel <- function(object) {
+  UseMethod("getDatafromModel")
+}
+
+getDatafromModel.polr <- function(object) {
+  object$model
+}
+
+#' @keywords internal
+checkDataSame <- function(model, full_model) {
+
+  # Get the dataset from the model object
+  dataRedu <- getDatafromModel(model)
+  dataFull <- getDatafromModel(full_model)
+
+  If_same_data <- all.equal(dataRedu,
+                            dataFull[,names(dataRedu)],
+                            check.attributes = FALSE)
+
+  if (isTRUE(If_same_data) == FALSE) {
+    warning("The datasets in two model objects are different. The dataset in 'full_model' is used. Use with cautions!")
+  }
+  # return the data
+  return(dataFull)
 }
