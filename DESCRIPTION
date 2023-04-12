@@ -31,10 +31,9 @@ Description: To assess and compare the models' goodness of fit, R-squared is one
 License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Depends:
   R (>= 3.5.0),
-  DescTools (>= 0.99.42),
   MASS (>= 7.3-54), 
   PAsso (>= 0.1.10), 
   progress (>= 1.2.0),
