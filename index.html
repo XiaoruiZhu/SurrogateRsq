@@ -148,7 +148,6 @@
 <span><span class="va">surr_obj_white</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="reference/surr_rsq.html">surr_rsq</a></span><span class="op">(</span>model      <span class="op">=</span> <span class="va">select_model_white</span>,</span>
 <span>           full_model <span class="op">=</span> <span class="va">select_model_white</span>, </span>
-<span>           data       <span class="op">=</span> <span class="va">WhiteWine</span>, </span>
 <span>           avg.num    <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">surr_obj_white</span><span class="op">$</span><span class="va">surr_rsq</span>, </span>
@@ -158,7 +157,6 @@
 <span></span>
 <span><span class="va">Rank_table_white</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="reference/surr_rsq_rank.html">surr_rsq_rank</a></span><span class="op">(</span>object  <span class="op">=</span> <span class="va">surr_obj_white</span>, </span>
-<span>                data    <span class="op">=</span> <span class="va">WhiteWine</span>,</span>
 <span>                avg.num <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">Rank_table_white</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
@@ -279,7 +277,6 @@
 <span><span class="va">surr_obj_mod_full</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="reference/surr_rsq.html">surr_rsq</a></span><span class="op">(</span>model      <span class="op">=</span> <span class="va">mod_full</span>,</span>
 <span>           full_model <span class="op">=</span> <span class="va">mod_full</span>, </span>
-<span>           data       <span class="op">=</span> <span class="va">RedWine2</span>, </span>
 <span>           avg.num    <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">surr_obj_mod_full</span><span class="op">$</span><span class="va">surr_rsq</span>, </span>
 <span>      digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
@@ -288,7 +285,6 @@
 <span></span>
 <span><span class="va">surr_obj_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/surr_rsq.html">surr_rsq</a></span><span class="op">(</span>model   <span class="op">=</span> <span class="va">select_model</span>, </span>
 <span>                        full_model <span class="op">=</span> <span class="va">mod_full</span>, </span>
-<span>                        data       <span class="op">=</span> <span class="va">RedWine2</span>, </span>
 <span>                        avg.num    <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">surr_obj_lm</span><span class="op">$</span><span class="va">surr_rsq</span>, </span>
@@ -310,7 +306,6 @@
 <span><span class="co"># Importance ranking table of the full model</span></span>
 <span><span class="va">Rank_table_mod_full</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="reference/surr_rsq_rank.html">surr_rsq_rank</a></span><span class="op">(</span>object  <span class="op">=</span> <span class="va">surr_obj_mod_full</span>, </span>
-<span>                data    <span class="op">=</span> <span class="va">RedWine2</span>,</span>
 <span>                avg.num <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">Rank_table_mod_full</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span></span>
@@ -320,7 +315,6 @@
 <span></span>
 <span><span class="va">Rank_table2</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="reference/surr_rsq_rank.html">surr_rsq_rank</a></span><span class="op">(</span>object  <span class="op">=</span> <span class="va">surr_obj_mod_full</span>, </span>
-<span>                data    <span class="op">=</span> <span class="va">RedWine2</span>,</span>
 <span>                var.set <span class="op">=</span> <span class="va">var_set</span>, </span>
 <span>                avg.num <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">Rank_table2</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
