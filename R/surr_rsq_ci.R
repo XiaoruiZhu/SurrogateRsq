@@ -51,7 +51,9 @@ surr_rsq_ci <-
     res_s <- surr_rsq[[1]]
     reduced_model <- surr_rsq[[2]]
     full_model <- surr_rsq[[3]]
-    data <- surr_rsq[[4]]
+
+    # Check if datasets from two model objects are the same!
+    data <- checkDataSame(model = reduced_model, full_model = full_model)
 
     n <- nrow(data)
     # resultTable <- array(NA, dim = c(dim(data),1,B))
@@ -61,18 +63,22 @@ surr_rsq_ci <-
 
     for (j in 2:B) {
       BS_data <- data[sample(1:n, n, replace = T), ]
+      BS_full_model <- update(full_model, data = BS_data)
       try(
-        resultTable[j] <- surr_rsq(reduced_model, full_model,data)[[1]]
+        resultTable[j] <- surr_rsq(model = reduced_model,
+                                   full_model = BS_full_model)[[1]]
       )
       while( is.na(resultTable[j])) {
         BS_data <- data[sample(1:n, n, replace = T), ]
+        BS_full_model <- update(full_model, data = BS_data)
         try(
-          resultTable[j] <- surr_rsq(reduced_model, full_model, data)[[1]]
+          resultTable[j] <- surr_rsq(model = reduced_model,
+                                     full_model = BS_full_model)[[1]]
         )
       }
 
       # ProgressBar
-      pb $tick(tokens = list(letter = progress_repNo[j]))
+      pb$tick(tokens = list(letter = progress_repNo[j]))
     }
 
     CI_lower <- quantile(x = resultTable[-1], probs = c(alpha/2))
@@ -81,10 +87,45 @@ surr_rsq_ci <-
     CI_upper <- quantile(x = resultTable[-1], probs = c(1 - alpha/2))
     CI_upper <- round(CI_upper, 3)
 
-    return_list <- data.frame(Lower = c(percent(alpha/2, 0.01), CI_lower),
-                              Upper = c(percent(1 - alpha/2, 0.01), CI_upper),
-                              row.names = c("Percentile", "Confidence Interval"))
+    rsq_ci <- data.frame(Lower = c(percent(alpha/2, 0.01), CI_lower),
+                         Upper = c(percent(1 - alpha/2, 0.01), CI_upper),
+                         row.names = c("Percentile", "Confidence Interval"))
 
+    # Thanks to @indenkun for providing this revise.
+    return_list <- list("surr_rsq" = res_s,
+                        "surr_rsq_ci" = rsq_ci,
+                        "surr_rsq_BS" = resultTable[-1],
+                        "reduced_model" = reduced_model,
+                        "full_model" = full_model,
+                        "data" = data)
+
+    # Add class to the result_table
+    class(return_list) <- "surr_rsq_ci"
 
     return(return_list)
   }
+
+#' @title Print surrogate R-squared confidence interval measure
+#' @param x A surr_rsq_ci object for printing out results.
+#'
+#' @param digits A default number to specify decimal digit values.
+#' @param ... Additional optional arguments.
+#'
+#' @name print
+#' @method print surr_rsq_ci
+#'
+#' @return Print surrogate R-squared confidence interval measure
+#'
+#' @importFrom stats formula
+#'
+#' @export
+#' @keywords internal
+print.surr_rsq_ci <- function(x, digits = max(2, getOption("digits")-2), ...) {
+  cat("------------------------------------------------------------------------ \n")
+  cat("The surrogate R-squared of the model \n------------------------------------------------------------------------ \n",
+      paste(format(formula(x$reduced_model$terms)), "\n"),
+      "------------------------------------------------------------------------ \n",
+      "the interval estimate of the surrogate R-squared is: \n", sep = "")
+
+  print.data.frame(x$surr_rsq_ci, digits = digits)
+}
