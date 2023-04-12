@@ -63,7 +63,6 @@ select_model_white <-
 surr_obj_white <- 
   surr_rsq(model      = select_model_white,
            full_model = select_model_white, 
-           data       = WhiteWine, 
            avg.num    = 30)
 
 print(surr_obj_white$surr_rsq, 
@@ -73,7 +72,6 @@ print(surr_obj_white$surr_rsq,
 
 Rank_table_white <- 
   surr_rsq_rank(object  = surr_obj_white, 
-                data    = WhiteWine,
                 avg.num = 30)
 
 print(Rank_table_white, digits = 3)
@@ -195,7 +193,6 @@ set.seed(777)
 surr_obj_mod_full <- 
   surr_rsq(model      = mod_full,
            full_model = mod_full, 
-           data       = RedWine2, 
            avg.num    = 30)
 print(surr_obj_mod_full$surr_rsq, 
       digits = 3)
@@ -204,7 +201,6 @@ print(surr_obj_mod_full$surr_rsq,
 
 surr_obj_lm <- surr_rsq(model   = select_model, 
                         full_model = mod_full, 
-                        data       = RedWine2, 
                         avg.num    = 30)
 
 print(surr_obj_lm$surr_rsq, 
@@ -226,7 +222,6 @@ set.seed(777)
 # Importance ranking table of the full model
 Rank_table_mod_full <- 
   surr_rsq_rank(object  = surr_obj_mod_full, 
-                data    = RedWine2,
                 avg.num = 30)
 print(Rank_table_mod_full, digits = 3)
 
@@ -236,7 +231,6 @@ var_set <- list(c("sulphates", "I(sulphates^2)", "I(sulphates^3)"),
 
 Rank_table2 <- 
   surr_rsq_rank(object  = surr_obj_mod_full, 
-                data    = RedWine2,
                 var.set = var_set, 
                 avg.num = 30)
 print(Rank_table2, digits = 3)
