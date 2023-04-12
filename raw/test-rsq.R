@@ -38,3 +38,4 @@ test_that("test surr_rsq which==Surrogate for vgam", {
   # expect_type(sur2, "list")
   # expect_lt(object = sur2$surr_rsq, expected = 0.33)
 })
+
