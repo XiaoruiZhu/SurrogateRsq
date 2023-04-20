@@ -48,3 +48,4 @@ URL: https://xiaorui.site/SurrogateRsq/,
     http://xiaorui.site/SurrogateRsq/
 BugReports: https://github.com/XiaoruiZhu/SurrogateRsq/issues
 VignetteBuilder: R.rsp
+Roxygen: list(markdown = TRUE)

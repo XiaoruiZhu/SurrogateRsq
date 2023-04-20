@@ -10,20 +10,20 @@
 #'
 #' @format A data frame with 1599 rows, quality score, and 11 variables of physicochemical properties of wines.
 #' \itemize{
-#'   \item \code{quality} Tasting preference is a rating score provided by a minimum of three sensory with ordinal values from
+#'   \item `quality` Tasting preference is a rating score provided by a minimum of three sensory with ordinal values from
 #'   0 (very bad) to 10 (excellent). The final sensory score is the median of these evaluations.
 #'
-#'   \item \code{fixed.acidity} The fixed acidity is the physicochemical property in unit (g(tartaric acid)/dm^3).
-#'   \item \code{volatile.acidity} The volatile acidity is in unit g(acetic acid)/dm^3.
-#'   \item \code{citric.acid} The citric acidity is in unit g/dm^3.
-#'   \item \code{residual.sugar} The residual sugar is in unit g/dm^3.
-#'   \item \code{chlorides} The chlorides is in unit g(sodium chloride)/dm^3.
-#'   \item \code{free.sulfur.dioxide} The free sulfur dioxide is in unit mg/dm^3.
-#'   \item \code{total.sulfur.dioxide} The total sulfur dioxide is in unit mg/dm^3.
-#'   \item \code{density} The density is in unit g/cm^3.
-#'   \item \code{pH} The wine's pH value.
-#'   \item \code{sulphates} The sulphates is in unit g(potassium sulphates)/dm^3.
-#'   \item \code{alcohol} The alcohol is in unit \% vol.
+#'   \item `fixed.acidity` The fixed acidity is the physicochemical property in unit (g(tartaric acid)/dm^3).
+#'   \item `volatile.acidity` The volatile acidity is in unit g(acetic acid)/dm^3.
+#'   \item `citric.acid` The citric acidity is in unit g/dm^3.
+#'   \item `residual.sugar` The residual sugar is in unit g/dm^3.
+#'   \item `chlorides` The chlorides is in unit g(sodium chloride)/dm^3.
+#'   \item `free.sulfur.dioxide` The free sulfur dioxide is in unit mg/dm^3.
+#'   \item `total.sulfur.dioxide` The total sulfur dioxide is in unit mg/dm^3.
+#'   \item `density` The density is in unit g/cm^3.
+#'   \item `pH` The wine's pH value.
+#'   \item `sulphates` The sulphates is in unit g(potassium sulphates)/dm^3.
+#'   \item `alcohol` The alcohol is in unit \% vol.
 #'   }
 #'
 #' @references
@@ -52,20 +52,20 @@ NULL
 #'
 #' @format A data frame with 4898 rows, quality score, and 11 variables of physicochemical properties of wines.
 #' \itemize{
-#'   \item \code{quality} Tasting preference is a rating score provided by a minimum of three sensory with ordinal values from
+#'   \item `quality` Tasting preference is a rating score provided by a minimum of three sensory with ordinal values from
 #'   0 (very bad) to 10 (excellent). The final sensory score is the median of these evaluations.
 #'
-#'   \item \code{fixed.acidity} The fixed acidity is the physicochemical property in unit (g(tartaric acid)/dm^3).
-#'   \item \code{volatile.acidity} The volatile acidity is in unit g(acetic acid)/dm^3.
-#'   \item \code{citric.acid} The citric acidity is in unit g/dm^3.
-#'   \item \code{residual.sugar} The residual sugar is in unit g/dm^3.
-#'   \item \code{chlorides} The chlorides is in unit g(sodium chloride)/dm^3.
-#'   \item \code{free.sulfur.dioxide} The free sulfur dioxide is in unit mg/dm^3.
-#'   \item \code{total.sulfur.dioxide} The total sulfur dioxide is in unit mg/dm^3.
-#'   \item \code{density} The density is in unit g/cm^3.
-#'   \item \code{pH} The wine's pH value.
-#'   \item \code{sulphates} The sulphates is in unit g(potassium sulphates)/dm^3.
-#'   \item \code{alcohol} The alcohol is in unit \% vol.
+#'   \item `fixed.acidity` The fixed acidity is the physicochemical property in unit (g(tartaric acid)/dm^3).
+#'   \item `volatile.acidity` The volatile acidity is in unit g(acetic acid)/dm^3.
+#'   \item `citric.acid` The citric acidity is in unit g/dm^3.
+#'   \item `residual.sugar` The residual sugar is in unit g/dm^3.
+#'   \item `chlorides` The chlorides is in unit g(sodium chloride)/dm^3.
+#'   \item `free.sulfur.dioxide` The free sulfur dioxide is in unit mg/dm^3.
+#'   \item `total.sulfur.dioxide` The total sulfur dioxide is in unit mg/dm^3.
+#'   \item `density` The density is in unit g/cm^3.
+#'   \item `pH` The wine's pH value.
+#'   \item `sulphates` The sulphates is in unit g(potassium sulphates)/dm^3.
+#'   \item `alcohol` The alcohol is in unit \% vol.
 #'   }
 #'
 #' @references

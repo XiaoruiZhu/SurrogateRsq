@@ -2,7 +2,7 @@
 #'
 #' @description It can provide the surrogate R-squared for a user specified model.
 #' This function will generate an S3 object of surrogate R-squared measure that will
-#' be called from other functions of this package. The generic S3 function \code{print}
+#' be called from other functions of this package. The generic S3 function `print`
 #' is also developed to present the surrogate R-squared measure.
 #' @param model A reduced model that needs to be investigated. The reported surrogate R-square is for this reduced model.
 #' @param full_model A full model that contains all of the predictors in the data set. This model object
@@ -10,13 +10,13 @@
 #' @param avg.num The number of replication for the averaging of surrogate R-square.
 #' @param ... Additional optional arguments.
 #'
-#' @return An object of class \code{"surr_rsq"} is a list containing the following components:
-#' \item{\code{surr_rsq}}{the surrogate R-square value;}
-#' \item{\code{reduced_model}}{the reduced model under investigation. It should be a subset
+#' @return An object of class `"surr_rsq"` is a list containing the following components:
+#' \item{`surr_rsq`}{the surrogate R-square value;}
+#' \item{`reduced_model`}{the reduced model under investigation. It should be a subset
 #' of the full model;}
-#' \item{\code{full_model}}{the full model used for generating the surrogate response. It should
+#' \item{`full_model`}{the full model used for generating the surrogate response. It should
 #' have passed initial variable screening and model diagnostics (see Paper for reference);}
-#' \item{\code{data}}{the dataset contains the response variable and all the predictors.}
+#' \item{`data`}{the dataset contains the response variable and all the predictors.}
 #'
 #' @references
 #' Zhu, X., Liu, D., Lin, Z., Greenwell, B. (2022). SurrogateRsq: an R package for categorical
