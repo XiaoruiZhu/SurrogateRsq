@@ -1,0 +1,7 @@
+package,old,new,delta
+SurrogateRsq,0.2.0,0.2.0.9000,*
+fontawesome,NA,0.5.1,*
+ggplot2,NA,3.4.2,*
+RcppArmadillo,NA,0.12.2.0.0,*
+rmarkdown,NA,2.21,*
+tinytex,NA,0.45,*

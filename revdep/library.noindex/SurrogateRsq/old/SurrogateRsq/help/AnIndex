@@ -1,0 +1,9 @@
+print	print
+print.surr_rsq	print
+print.surr_rsq_rank	print
+RedWine	RedWine
+rsq	rsq
+surr_rsq	surr_rsq
+surr_rsq_ci	surr_rsq_ci
+surr_rsq_rank	surr_rsq_rank
+WhiteWine	WhiteWine

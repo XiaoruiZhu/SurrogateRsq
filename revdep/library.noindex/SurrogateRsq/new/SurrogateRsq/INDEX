@@ -1,0 +1,10 @@
+RedWine                 Red wine quality dataset of the Portuguese
+                        "Vinho Verde" wine
+WhiteWine               White wine quality dataset of the Portuguese
+                        "Vinho Verde" wine
+surr_rsq                A function to calculate the surrogate R-squared
+                        measure.
+surr_rsq_ci             A function to calculate the interval estimate
+                        of the surrogate R-squared measure
+surr_rsq_rank           The contribution of each variable in the final
+                        model
