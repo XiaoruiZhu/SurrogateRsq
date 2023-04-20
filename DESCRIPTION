@@ -1,7 +1,7 @@
 Package: SurrogateRsq
 Type: Package
 Title: Goodness-of-Fit Analysis for Categorical Data using the Surrogate R-Squared
-Version: 0.2.0.9000
+Version: 0.2.1
 Authors@R: 
   c(person(given = "Xiaorui (Jeremy)", family = "Zhu",
            role = c("aut", "cre", "cph"),
