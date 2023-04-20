@@ -65,6 +65,7 @@ test_that("test surr_rsq_rank", {
 
 test_that("test surr_rsq_rank example", {
   library(MASS)
+  library(dplyr)
   data("WhiteWine")
 
   sele_formula <- as.formula("quality ~ fixed.acidity + volatile.acidity +

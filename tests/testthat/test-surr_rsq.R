@@ -33,7 +33,7 @@ test_that("test surr_rsq", {
 
 
 test_that("test surr_rsq which==Surrogate for plor", {
-
+  library(dplyr)
   data("RedWine")
 
   full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity +

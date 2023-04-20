@@ -1,6 +1,6 @@
 Package: SurrogateRsq
 Type: Package
-Title: Goodness-of-fit Analysis for Categorical Data using the Surrogate R-Squared
+Title: Goodness-of-Fit Analysis for Categorical Data using the Surrogate R-Squared
 Version: 0.2.0.9000
 Authors@R: 
   c(person(given = "Xiaorui (Jeremy)", family = "Zhu",
@@ -42,7 +42,8 @@ Suggests:
     R.rsp,
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    dplyr (>= 1.1.1)
 Config/testthat/edition: 3
 URL: https://xiaorui.site/SurrogateRsq/,
     http://xiaorui.site/SurrogateRsq/

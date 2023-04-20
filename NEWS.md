@@ -1,3 +1,13 @@
+# SurrogateRsq 0.2.1
+
+## Minor improvements and fixes 
+
+* The `data` argument is removed from all three main functions `surr_rsq()`, `surr_rsq_ci()`, and `surr_rsq_rank()`. The dataset will be directly pulled our from the `full_model` object. 
+
+* The bug related to the bootstrapped data and the model updating steps in `surr_rsq_ci()` have been fixed (#2, #3). 
+
+* `rsq()` function is removed since it is no needed. 
+
 # SurrogateRsq (development version)
 
 # SurrogateRsq 0.2.0
