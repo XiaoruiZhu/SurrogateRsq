@@ -81,6 +81,7 @@ test_that("test surr_rsq_rank example", {
 
   rank_tab_sur1 <- surr_rsq_rank(object  = sur1,
                                  avg.num = 30)
+
   expect_true(!is.null(rank_tab_sur1), "list")
 
 })

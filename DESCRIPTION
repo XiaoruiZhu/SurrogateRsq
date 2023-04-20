@@ -44,6 +44,7 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://xiaorui.site/SurrogateRsq/
+URL: https://xiaorui.site/SurrogateRsq/,
+    http://xiaorui.site/SurrogateRsq/
 BugReports: https://github.com/XiaoruiZhu/SurrogateRsq/issues
 VignetteBuilder: R.rsp
