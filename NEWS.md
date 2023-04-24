@@ -8,7 +8,7 @@
 
 * `rsq()` function is removed since it is no needed. 
 
-# SurrogateRsq (development version)
+# SurrogateRsq 0.2.0.9000
 
 # SurrogateRsq 0.2.0
 
