@@ -31,7 +31,6 @@ test_that("test surr_rsq", {
   expect_lt(object = sur2$surr_rsq, expected = 0.33)
 })
 
-
 test_that("test surr_rsq which==Surrogate for plor", {
   library(dplyr)
   data("RedWine")
@@ -53,5 +52,58 @@ test_that("test surr_rsq which==Surrogate for plor", {
                                 full_model = full_mod,
                                 avg.num = 30)
 
+  # unname(DescTools::PseudoR2(select_model, which = "McFadden"))
+
   expect_type(surr_obj_sele_mod, "list")
+})
+
+test_that("test surr_rsq which==Surrogate for glm", {
+  library(dplyr)
+  data("RedWine")
+  RedWine$quality.bin <- as.factor(ifelse(RedWine$quality>=6, 1, 0))
+
+  full_formula_bin <- as.formula(quality.bin ~ fixed.acidity + volatile.acidity +
+                               citric.acid+ residual.sugar + chlorides + free.sulfur.dioxide +
+                               total.sulfur.dioxide + density + pH + sulphates + alcohol)
+
+  full_mod_glm <- glm(formula = full_formula_bin,
+                      data=RedWine, family = binomial(link = "logit"))
+  # summary(full_mod_glm)
+
+  select_model_glm <- update(full_mod_glm, formula. = ". ~ . - fixed.acidity -
+                         residual.sugar - density - pH")
+
+  # all.equal(select_model$model, (full_mod$model[,names(select_model$model)]),
+  #           check.attributes = FALSE)
+
+  # both are logit model
+  surr_obj_sele_mod_bin <- surr_rsq(model = select_model_glm,
+                                full_model = full_mod_glm,
+                                avg.num = 30)
+
+  # unname(DescTools::PseudoR2(select_model_glm, which = "McFadden"))
+
+  # both are probit model, glm probit does not accept factor binary response
+  RedWine$quality.bin <- ifelse(RedWine$quality>=6, 1, 0)
+
+  full_mod_glm_probit <- glm(formula = full_formula_bin,
+                      data=RedWine, family = binomial(link = "probit"))
+  # summary(full_mod_glm_probit)
+  # summary(full_mod_glm)
+
+  select_model_glm_probit <- update(full_mod_glm_probit, formula. = ". ~ . - fixed.acidity -
+                         residual.sugar - density - pH")
+
+  surr_obj_sele_mod_bin_probit <- surr_rsq(model = select_model_glm_probit,
+                                    full_model = full_mod_glm_probit,
+                                    avg.num = 30)
+
+  # unname(DescTools::PseudoR2(select_model_glm_probit, which = "McFadden"))
+
+  # One is probit model one is logit model: it generates different data, models are not checked.
+  # surr_obj_sele_mod_bin_probit2 <- surr_rsq(model = select_model_glm_probit,
+                                           # full_model = full_mod_glm,
+                                           # avg.num = 30)
+
+  expect_type(surr_obj_sele_mod_bin, "list")
 })

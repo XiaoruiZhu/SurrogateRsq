@@ -137,6 +137,11 @@ getDatafromModel.polr <- function(object) {
   object$model
 }
 
+getDatafromModel.glm <- function(object) {
+  # family_attr <- family(object)
+  object$data
+}
+
 #' @keywords internal
 checkDataSame <- function(model, full_model) {
 
