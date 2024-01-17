@@ -4,21 +4,24 @@
 \alias{surr_rsq}
 \title{A function to calculate the surrogate R-squared measure.}
 \usage{
-surr_rsq(model, full_model, avg.num = 30, ...)
+surr_rsq(model, full_model, avg.num = 30, asym = FALSE, ...)
 }
 \arguments{
-\item{model}{A reduced model that needs to be investigated. The reported surrogate R-square is for this reduced model.}
+\item{model}{A reduced model that needs to be investigated. The reported surrogate R-squared is for this reduced model.}
 
 \item{full_model}{A full model that contains all of the predictors in the data set. This model object
 should also contain the dataset for fitting the full model and the reduced model in the first argument.}
 
-\item{avg.num}{The number of replication for the averaging of surrogate R-square.}
+\item{avg.num}{The number of replication for the averaging of surrogate R-squared.}
+
+\item{asym}{A logical argument whether use the asymptotic version of our surrogate R-squared.
+More details are in the paper Liu et al. (2023).}
 
 \item{...}{Additional optional arguments.}
 }
 \value{
 An object of class \code{"surr_rsq"} is a list containing the following components:
-\item{\code{surr_rsq}}{the surrogate R-square value;}
+\item{\code{surr_rsq}}{the surrogate R-squared value;}
 \item{\code{reduced_model}}{the reduced model under investigation. It should be a subset
 of the full model;}
 \item{\code{full_model}}{the full model used for generating the surrogate response. It should
@@ -51,4 +54,8 @@ print(surr_obj_sele_mod$surr_rsq, digits = 3)
 \references{
 Zhu, X., Liu, D., Lin, Z., Greenwell, B. (2022). SurrogateRsq: an R package for categorical
 data goodness-of-fit analysis using the surrogate R-squared
+
+Liu, D., Zhu, X., Greenwell, B., & Lin, Z. (2023). A new goodness‐of‐fit measure for
+probit models: Surrogate R2. British Journal of Mathematical and Statistical
+Psychology, 76(1), 192-210.
 }

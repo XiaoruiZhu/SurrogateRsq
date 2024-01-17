@@ -57,6 +57,37 @@ test_that("test surr_rsq which==Surrogate for plor", {
   expect_type(surr_obj_sele_mod, "list")
 })
 
+test_that("test surr_rsq asym=TRUE vs asym=FALSE", {
+  library(dplyr)
+  data("RedWine")
+
+  full_formula <- as.formula(quality ~ fixed.acidity + volatile.acidity +
+                               citric.acid+ residual.sugar + chlorides + free.sulfur.dioxide +
+                               total.sulfur.dioxide + density + pH + sulphates + alcohol)
+
+  full_mod <- polr(formula = full_formula,
+                   data=RedWine, method  = "probit")
+
+  select_model <- update(full_mod, formula. = ". ~ . - fixed.acidity -
+                       citric.acid - residual.sugar - density")
+
+  system.time(
+  surr_obj_sele_mod_avg <- surr_rsq(model = select_model,
+                                full_model = full_mod,
+                                avg.num = 100)
+  )
+  system.time(
+    surr_obj_sele_mod_asym <- surr_rsq(model = select_model,
+                                  full_model = full_mod,
+                                  asym = TRUE)
+  )
+
+
+  diff_surr <- surr_obj_sele_mod_avg$surr_rsq - surr_obj_sele_mod_asym$surr_rsq
+
+  expect_lt(diff_surr < 0.01)
+})
+
 test_that("test surr_rsq which==Surrogate for glm", {
   library(dplyr)
   data("RedWine")
