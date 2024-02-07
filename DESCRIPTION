@@ -15,7 +15,7 @@ Authors@R:
            email = "dungang.liu@uc.edu", 
            comment = c(ORCID = "0000-0001-5340-9465")),
     person(given = "Brandon", family = "Greenwell", 
-           role = c("aut", "ctb"), 
+           role = c("ctb"), 
            email = "greenwell.brandon@gmail.com"))
 Maintainer: Xiaorui (Jeremy) Zhu <zhuxiaorui1989@gmail.com>
 Description: To assess and compare the models' goodness of fit, R-squared is one of the most 
