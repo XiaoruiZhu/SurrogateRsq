@@ -8,7 +8,8 @@
 #' @param asym A logical argument whether use the asymptotic version of our surrogate R-squared.
 #' More details are in the paper of Liu et al. (2023).
 #' @param parallel logical argument whether conduct parallel for bootstrapping surrogate R-squared
-#' to construct the interval estimate.
+#' to construct the interval estimate. The clusters need to be registered through
+#'  `registerDoParallel(cl)` beforehand.
 #' @param ... Additional optional arguments.
 #'
 #' @return An list that contains the CI_lower, CI_upper.

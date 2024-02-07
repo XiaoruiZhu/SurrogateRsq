@@ -25,7 +25,8 @@ It contains the following components: \code{surr_rsq}, \code{reduced_model}, \co
 More details are in the paper of Liu et al. (2023).}
 
 \item{parallel}{logical argument whether conduct parallel for bootstrapping surrogate R-squared
-to construct the interval estimate.}
+to construct the interval estimate. The clusters need to be registered through
+\code{registerDoParallel(cl)} beforehand.}
 
 \item{...}{Additional optional arguments.}
 }
