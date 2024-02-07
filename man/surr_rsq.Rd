@@ -4,7 +4,7 @@
 \alias{surr_rsq}
 \title{A function to calculate the surrogate R-squared measure.}
 \usage{
-surr_rsq(model, full_model, avg.num = 30, asym = FALSE, ...)
+surr_rsq(model, full_model, avg.num = 30, asym = FALSE, newdata = NULL, ...)
 }
 \arguments{
 \item{model}{A reduced model that needs to be investigated. The reported surrogate R-squared is for this reduced model.}

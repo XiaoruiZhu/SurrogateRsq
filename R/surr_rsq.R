@@ -53,7 +53,8 @@ surr_rsq <-
   function(model,
            full_model,
            avg.num = 30,
-           asym = FALSE, ...){
+           asym = FALSE,
+           newdata = NULL, ...){
     # full_model_formula <- eval(full_model$call[[2]])
     # model_formula <- eval(model$call[[2]])
 
@@ -63,32 +64,25 @@ surr_rsq <-
 
 
     # Get set of predictors in reduced model and the predictors in full model
-    reduc_vars <- names(model$coefficients)
-    full_vars <- names(full_model$coefficients)
+    reduc_coefs <- getCoefsfromModel(model)
+    full_coefs <- getCoefsfromModel(full_model)
 
-    # Get coefficients for asymptotic version
-    p <- length(full_vars)
-    coefs_full <- matrix(coef(full_model), nrow = p, ncol = 1)
+    reduc_vars <- names(reduc_coefs)
+    full_vars <- names(full_coefs)
 
     # Check if datasets from two model objects are the same!
     data <- checkDataSame(model = model, full_model = full_model)
-    # data <- full_model$model
+    # Extract the variables as design matrix
+    x_full <- data[,-1] # Remove the response variable in 1st column
 
-    # Get design matrix of reduced model
-    x_reduc_cen <- scale(as.matrix(data[,reduc_vars]),
-                         center = TRUE, scale = FALSE)
-    x_full_cen <- scale(as.matrix(data[,full_vars]),
-                        center = TRUE, scale = FALSE)
+    n.obs <- dim(data)[1]
 
-    n <- dim(x_full_cen)[1]
-
+    # make sure the set of predictors in reduced model is the subset of the predictors in full model
     if(all(reduc_vars %in% full_vars)){
-      # make sure the set of predictors in reduced model is the subset of the predictors in full model
+
+      # Make sure reduced model and full model are same class
       if(model$method == full_model$method){
         # Fit models to ordinal response -----
-        # fit_y_full <- glm(formula = formula_full, data = data, family = binomial(link = link))
-        # This is for binary logistic regression
-
         # Surrogate with latent variables directly! -----
         # Generate surrogate response values
 
@@ -97,28 +91,95 @@ surr_rsq <-
           res_s_temp <- rep(NA, times = avg.num)
           for (i in 1:avg.num) {
             # critical: generate surrogate response from the full model.
-            data$s_full <- surrogate(full_model)
+            data$s_full <-
+              surrogate(object = full_model,
+                        method = "latent"
+              )
             # Generate surrogate from True Null hypothesis!
             fit_s <- lm(formula = update(model_formula, s_full ~ . ), data = data)
 
             res_s_temp[i] <- c(summary(fit_s)$r.squared)
           }
-          res_s <- mean(res_s_temp)
+          res_s <- res_rsq_oos <- mean(res_s_temp)
         } else {
           # Use the asymptotic version of our surrogate R-squared
-          numer <- t(coefs_full) %*% t(x_full_cen) %*% x_reduc_cen %*% solve(crossprod(x_reduc_cen), t(x_reduc_cen)) %*% x_full_cen %*% coefs_full
 
-          fullbase <- t(coefs_full) %*% crossprod(x_full_cen) %*% coefs_full + n
+          # Get coefficients for asymptotic version
+          term.labels <- attr(full_model$terms, "term.labels")
+          p <- length(term.labels)
+          # Get full coefficients from full model object
+          # Change the coefficient vector to p by 1 matrix for later muliplication
+
+          coefs_full <- matrix(full_coefs[term.labels],
+                               nrow = p, ncol = 1)
+
+          reduc_vars <- attr(model$terms, "term.labels")
+
+          # Get design matrix without intercept for reduced model and full model
+          # Get centralized design matrix without intercept full model
+          x_full_cen <- scale(as.matrix(x_full),
+                              center = TRUE, scale = FALSE)
+
+          # Use updated reduc_vars to standardize the design matrix and add 1 column
+          x_reduc_cen <- scale(as.matrix(x_full[, reduc_vars]),
+                               center = TRUE, scale = FALSE)
+
+          numer <-
+            t(coefs_full) %*% t(x_full_cen) %*% x_reduc_cen %*%
+            solve(crossprod(x_reduc_cen), t(x_reduc_cen)) %*%
+            x_full_cen %*% coefs_full
+
+          # Initialize the variance of error for different methods
+          distribution <- getDistributionName(full_model)
+
+          var_error <- switch(distribution,
+                             norm = 1, # Normal distribution variance
+                             logis = pi^2 / 3 # Logistic distribution variance
+                             )
+
+          # The variance of full model is depending on the error distribution (n.obs * var_error)
+          fullbase <- t(coefs_full) %*% crossprod(x_full_cen) %*% coefs_full + n.obs * var_error
 
           surr_asym <- numer/fullbase
-          res_s <- surr_asym
+          res_s <- res_rsq_oos <- surr_asym
           message("The asymptotic version of surrogate R-squared is used, no average is taken!")
+
+          if (missing(newdata)) { # This will only run the asym=TURE since it uses the asym formula
+            res_rsq_oos <- surr_asym
+          } else {
+            # We follow the idea of Campbell and Thompson (2008) - Review of Financial Studies.
+            # "Predicting excess stock returns out of sample: Can anything beat the historical average?"
+            # Get centralized design matrix without intercept full model
+            n.obs.new <- dim(newdata)[1]
+            coefs_full
+            x_full_new <- newdata[,term.labels] # Get all variables from newdata
+
+            x_full_new_cen <- scale(as.matrix(x_full_new),
+                                    center = TRUE, scale = FALSE)
+
+            # Use updated reduc_vars to standardize the design matrix and add 1 column
+            x_reduc_new_cen <- scale(as.matrix(x_full_new[, reduc_vars]),
+                                     center = TRUE, scale = FALSE)
+
+            numer_new <-
+              t(coefs_full) %*% t(x_full_new_cen) %*% x_reduc_new_cen %*%
+              solve(crossprod(x_reduc_new_cen), t(x_reduc_new_cen)) %*%
+              x_full_new_cen %*% coefs_full
+
+            # The variance of full model is depending on the error distribution (n.obs * var_error)
+            fullbase_new <- t(coefs_full) %*% crossprod(x_full_new_cen) %*% coefs_full + n.obs.new * var_error
+
+            surr_asym_oos <- numer_new/fullbase_new
+            res_rsq_oos <- surr_asym_oos # out-of-sample surrogate R-squared, testing feature!
+          }
         }
 
         return_list <-list("surr_rsq"      = res_s,
                            "reduced_model" = model,
                            "full_model"    = full_model,
-                           "data"          = data)
+                           "data"          = data,
+                           "newdata"       = newdata,
+                           "surr_rsq_oos"  = res_rsq_oos)
 
         class(return_list) <- c("surr_rsq", class(return_list))
 
@@ -163,35 +224,3 @@ print.surr_rsq <- function(x, digits = max(2, getOption("digits")-2), ...) {
                 quote = FALSE, ...)
 }
 
-
-#' @keywords internal
-getDatafromModel <- function(object) {
-  UseMethod("getDatafromModel")
-}
-
-getDatafromModel.polr <- function(object) {
-  object$model
-}
-
-getDatafromModel.glm <- function(object) {
-  # family_attr <- family(object)
-  object$data
-}
-
-#' @keywords internal
-checkDataSame <- function(model, full_model) {
-
-  # Get the dataset from the model object
-  dataRedu <- getDatafromModel(model)
-  dataFull <- getDatafromModel(full_model)
-
-  If_same_data <- all.equal(dataRedu,
-                            dataFull[,names(dataRedu)],
-                            check.attributes = FALSE)
-
-  if (isTRUE(If_same_data) == FALSE) {
-    warning("The datasets in two model objects are different. The dataset in 'full_model' is used. Use with cautions!")
-  }
-  # return the data
-  return(dataFull)
-}
