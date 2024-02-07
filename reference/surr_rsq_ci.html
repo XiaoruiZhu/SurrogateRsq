@@ -89,7 +89,8 @@ More details are in the paper of Liu et al. (2023).</p></dd>
 
 <dt>parallel</dt>
 <dd><p>logical argument whether conduct parallel for bootstrapping surrogate R-squared
-to construct the interval estimate.</p></dd>
+to construct the interval estimate. The clusters need to be registered through
+<code>registerDoParallel(cl)</code> beforehand.</p></dd>
 
 
 <dt>...</dt>
@@ -129,7 +130,7 @@ to construct the interval estimate.</p></dd>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Xiaorui (Jeremy) Zhu.</p>
+  <p></p><p>Developed by Xiaorui Zhu, Zewei Lin, Dungang Liu, Brandon Greenwell.</p>
 </div>
 
 <div class="pkgdown-footer-right">
