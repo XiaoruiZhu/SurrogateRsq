@@ -172,8 +172,8 @@
 <h1 id="a-recommended-workflow-for-categorical-data-modeling-using-surrogatersq-and-other-statistical-tools">A recommended workflow for categorical data modeling using SurrogateRsq and other statistical tools<a class="anchor" aria-label="anchor" href="#a-recommended-workflow-for-categorical-data-modeling-using-surrogatersq-and-other-statistical-tools"></a>
 </h1>
 <p>In empirical studies, goodness-of-fit analysis should be used jointly with other statistical tools, such as variable screening/selection and model diagnostics, in the model-building and refining process. In this section, we discuss how to follow the workflow in the following diagram to carry out statistical modeling for categorical data. We also discuss how to use the <span class="math inline"><strong>SurrogateRsq</strong></span> package with other existing R packages to implement this workflow. As Liu et al. (2023)’s method requires a full model, researchers and practitioners can also follow the process in Figure to initiate a full model so as to facilitate goodness-of-fit analysis.</p>
-<div class="figure">
-<img src="articles/flowchart.png" style="width:90.0%" alt=""><p class="caption">An illustration of the workflow for modeling categorical data</p>
+<div class="float">
+<img src="articles/flowchart.png" style="width:90.0%" alt="An illustration of the workflow for modeling categorical data"><div class="figcaption">An illustration of the workflow for modeling categorical data</div>
 </div>
 <ol style="list-style-type: decimal">
 <li><p>In <span class="math inline"><code>Step-0</code></span>, we can use the AIC/BIC/LASSO or any other variable selection methods deemed appropriate to trim or prune the set of explanatory variables to a ``manageable’’ size (e.g., less than 20). The goal is to eliminate irrelevant variables so that researchers can better investigate the model structure and assessment. The variable selection techniques have been studied extensively in the literature. Specifically, one can implement (i) the best subset selection using the function <span class="math inline"><code>regsubsets()</code></span> in the <span class="math inline"><strong>leaps</strong></span> package; (ii) the forward/backward/stepwise selection using the function <span class="math inline"><code><a href="https://rdrr.io/r/stats/step.html" class="external-link">step()</a></code></span> in the R core; (iii) the shrinkage methods including the (adaptive) LASSO in the  package; (iv) the regularized ordinal regression model with an elastic net penalty in the  package; and (v) the penalized regression models with minimax concave penalty (MCP) or smoothly clipped absolute deviation (SCAD) penalty in the  package. When the dimension is ultrahigh, the sure independence screening method can be applied through the  package. When the variables are grouped, one can apply the group selection methods including the group lasso, group MCP, and group SCAD through the  package. In some cases, <span class="math inline"><code>Step-0</code></span> may be skipped if the experiment only involves a (small) set of controlled variables. In these cases, the controlled variables should be modeled regardless of statistical significance or predictive power. We limit our discussion here because our focus is on goodness-of-fit analysis.</p></li>
@@ -349,7 +349,8 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Xiaorui Zhu <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0001-8533-3055" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://www.xiaorui.site/" class="external-link"><img src="https://xiaorui.site/img/logo.png" width="72"></a> <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0001-8533-3055" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Zewei Lin <br><small class="roles"> Author, contributor </small>  </li>
 <li>Dungang Liu <br><small class="roles"> Author, contributor </small> <a href="https://orcid.org/0000-0001-5340-9465" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li><a href="authors.html">More about authors...</a></li>
@@ -373,7 +374,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Xiaorui Zhu, Zewei Lin, Dungang Liu.</p>
+<p>Developed by <a href="https://www.xiaorui.site/" class="external-link"><img src="https://xiaorui.site/img/logo.png" width="72"></a>, Zewei Lin, Dungang Liu.</p>
 </div>
 
 <div class="pkgdown-footer-right">
