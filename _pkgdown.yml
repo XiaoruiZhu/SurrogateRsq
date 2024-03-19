@@ -2,9 +2,9 @@ home:
   sidebar:
     structure: [links, license, community, citation, authors, dev]
 authors:
-  firstname lastname:
-    href: "http://name-website.com"
-    html: "<img src='https://website.com/name-picture.png' width=72>"
+  Xiaorui Zhu:
+    href: "https://www.xiaorui.site/"
+    html: "<img src='https://xiaorui.site/img/logo.png' width=72>"
 
 url: http://xiaorui.site/SurrogateRsq/
 template:
